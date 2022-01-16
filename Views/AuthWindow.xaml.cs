@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using recipe.ViewModels;
+using System.Windows;
 
 
 namespace recipe
@@ -11,6 +12,7 @@ namespace recipe
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new AuthViewModel();
         }
     }
 }

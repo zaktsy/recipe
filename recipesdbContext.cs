@@ -7,7 +7,7 @@ namespace recipe
 {
     public partial class recipesdbContext : DbContext
     {
-        public recipesdbContext()
+        public recipesdbContext() 
         {
         }
 
