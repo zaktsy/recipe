@@ -8,7 +8,7 @@ namespace recipe.ViewModels
 {
     internal class MainViewModel: BaseViewModel
     {
-        public MainViewModel()
+        public MainViewModel(User user)
         {
 
         }

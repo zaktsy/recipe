@@ -1,4 +1,5 @@
 ﻿using recipe.ViewModels;
+using recipe.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,13 +15,32 @@ namespace recipe
     /// </summary>
     public partial class App : Application
     {
+        AuthViewModel authVM = new AuthViewModel();
+        MainViewModel mainVM;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            var authVM = new AuthViewModel();
             var authWindow = new AuthWindow() { DataContext = authVM };
+            authWindow.Closed += OnAuthorizationFinished;
             authWindow.Show();
         }
+
+        void OnAuthorizationFinished(object sender, EventArgs e)
+        {
+            if (!authVM.userLogin)
+                Shutdown();
+
+            mainVM = new MainViewModel(authVM.LoginedUser);
+
+            var mainWindow = new MainWindow() { DataContext = mainVM };
+            mainWindow.Closed += OnMainWindowClosed;
+            mainWindow.Show();
+        }
+        void OnMainWindowClosed(object sender, EventArgs e)
+        {
+            Shutdown();
+        }
+
     }
 }

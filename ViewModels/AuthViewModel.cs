@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace recipe.ViewModels
 {
@@ -13,7 +14,7 @@ namespace recipe.ViewModels
         private User loginedUser;
         private string email;
         private string password;
-        private bool userLogin = false;
+        public bool userLogin = false;
         private string message = "hello";
         public User LoginedUser
         {
@@ -52,13 +53,14 @@ namespace recipe.ViewModels
                             LoginedUser = user;
                             userLogin = true;
                             Message = "С возвращением, " + user.Name;
+                            Application.Current.MainWindow.Close();
                         }
                         
                     },
                     (obj) => Email!= null && Password != null));
             }
         }
-
+        
         #endregion
     }
 }
