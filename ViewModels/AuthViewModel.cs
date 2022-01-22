@@ -1,5 +1,4 @@
 ﻿using recipe.Infrastructure;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace recipe.ViewModels
 {
-    internal class AuthViewModel : INotifyPropertyChanged
+    internal class AuthViewModel : BaseViewModel
     {
         recipesdbContext db;
         private User loginedUser;
@@ -59,13 +58,7 @@ namespace recipe.ViewModels
                     (obj) => Email!= null && Password != null));
             }
         }
-        #endregion
-        #region Property
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged(string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
+
         #endregion
     }
 }
