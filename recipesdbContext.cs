@@ -7,7 +7,7 @@ namespace recipe
 {
     public partial class recipesdbContext : DbContext
     {
-        public recipesdbContext() 
+        public recipesdbContext()
         {
         }
 
@@ -277,6 +277,9 @@ namespace recipe
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.HasIndex(e => e.Email, "IX_Users")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Admin).HasColumnName("admin");

@@ -9,24 +9,12 @@ namespace recipe.ViewModels
 {
     internal class AuthViewModel : INotifyPropertyChanged
     {
-        recipesdbContext db;
-        private User _Text;
-        public User Text
-        {
-            get { return _Text; }
-            set 
-            { 
-                _Text = value;
-                OnPropertyChanged("Text");
-            }
-        }
+        
 
         public AuthViewModel()
         {
-            db = new recipesdbContext();
-            List<User> users = new List<User>();
-            users.AddRange(db.Users);
-            Text = users.FirstOrDefault();
+            
+            
         }
         #region Property
         public event PropertyChangedEventHandler? PropertyChanged;
