@@ -5,11 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:recipe.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="400">
-    <Grid>
-        <Button Command ="{Binding CheckUserCommand}" Content="Button" HorizontalAlignment="Left" Margin="180,190,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Margin="140,126,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" Margin="140,94,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"   Margin="200,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="400" Width="250">
+    <Grid Height="400" Width="250">
+        <Button Style="{StaticResource SubmitButton}" Command ="{Binding CheckUserCommand}" Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
     </Grid>
 </Window>

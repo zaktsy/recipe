@@ -15,7 +15,7 @@ namespace recipe.ViewModels
         private string email;
         private string password;
         public bool userLogin = false;
-        private string message = "hello";
+        private string message = "";
         public User LoginedUser
         {
             get { return loginedUser; }
