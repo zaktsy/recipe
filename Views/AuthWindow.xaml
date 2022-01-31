@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:in="http://schemas.microsoft.com/xaml/behaviors" 
         xmlns:b="clr-namespace:recipe.Infrastructure.behaviors"
-        xmlns:viewmodels="clr-namespace:recipe.ViewModels" xmlns:i="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
+        xmlns:cmd="clr-namespace:recipe.Infrastructure.commands"
+        xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="250"
         ResizeMode="CanMinimize" WindowStyle="None" Topmost="False">
@@ -19,11 +21,16 @@
                 <b:DragWindow/>
             </in:Interaction.Behaviors>
             <TextBlock Width="225"></TextBlock>
-            <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Width="17" Height="17"></Button>
+            <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17">
+                
+            </Button>
         </DockPanel>
         <Grid Grid.Row="1">
-            <Button Style="{StaticResource SubmitButton}"  Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
+            <Button Style="{StaticResource SubmitButton}" Command ="{Binding CheckUserCommand}" Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
 
         </Grid>
     </Grid>
+    <Window.Resources>
+        <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
+    </Window.Resources>
 </Window>

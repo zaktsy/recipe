@@ -1,4 +1,5 @@
 ﻿using recipe.Infrastructure;
+using recipe.Infrastructure.commands;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -60,7 +61,8 @@ namespace recipe.ViewModels
                     (obj) => Email!= null && Password != null));
             }
         }
-        
+        private BaseCommand closeAppCommand;
+        public BaseCommand CloseAppCommand => new CloseAppCommand();
         #endregion
     }
 }
