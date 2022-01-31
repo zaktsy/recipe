@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="Light">#DDDFDF</Color>
     <Color x:Key="Green">#667761</Color>
+    <Color x:Key="Red">#885053</Color>
+    <Color x:Key="Dark" >#272B29</Color>
+    <SolidColorBrush x:Key="RedColor" Color="{StaticResource Red}" />
     <SolidColorBrush x:Key="GreenColor" Color="{StaticResource Green}" />
     <SolidColorBrush x:Key="LightColor" Color="{StaticResource Light}" />
+    <SolidColorBrush x:Key="DarkColor" Color="{StaticResource Dark}" />
 </ResourceDictionary>

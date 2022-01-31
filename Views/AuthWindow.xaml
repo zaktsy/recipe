@@ -3,10 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:recipe.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
+        xmlns:in="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:b="clr-namespace:recipe.Infrastructure.behaviors"
+        xmlns:viewmodels="clr-namespace:recipe.ViewModels" xmlns:i="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="250">
-    <Grid Height="400" Width="250">
-        <Button Style="{StaticResource SubmitButton}" Command ="{Binding CheckUserCommand}" Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
+        Title="MainWindow" Height="400" Width="250"
+        ResizeMode="CanMinimize" WindowStyle="None" Topmost="False">
+    <Grid Height="425" Width="250">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="True" Style="{StaticResource TopPanel}" Height="25">
+            <in:Interaction.Behaviors>
+                <b:DragWindow/>
+            </in:Interaction.Behaviors>
+            <TextBlock Width="225"></TextBlock>
+            <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Width="17" Height="17"></Button>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Button Style="{StaticResource SubmitButton}" Command ="{Binding CheckUserCommand}" Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
+
+        </Grid>
     </Grid>
 </Window>

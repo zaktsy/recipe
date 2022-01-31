@@ -16,7 +16,29 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style TargetType="{x:Type Window}">
         <Setter Property="FontFamily" Value="Monserrat"/>
+    </Style>
+    
+    <Style x:Key="TopPanel" TargetType="{x:Type DockPanel}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Green}" Opacity="0.7"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="CloseButton" TargetType="{x:Type Button}">
+        <Setter Property="Opacity" Value="0.9"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="3"  BorderBrush="{StaticResource RedColor}" Background="{StaticResource RedColor}">
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
