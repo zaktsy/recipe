@@ -26,7 +26,7 @@
             </Button>
         </DockPanel>
         <Grid Grid.Row="1">
-            <Button Style="{StaticResource SubmitButton}" Command ="{Binding CheckUserCommand}" Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
+            <Button Style="{StaticResource SubmitButton}"  Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
 
         </Grid>
     </Grid>
