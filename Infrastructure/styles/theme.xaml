@@ -8,65 +8,27 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    <Style x:Key="SubmitButton" TargetType="{x:Type Button}" BasedOn="{StaticResource OutShadow}">
-        <Setter Property="FontSize" Value="13"/>
+
+
+    <Style x:Key="LOGO" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-        <Style.Triggers>
-            <Trigger Property="Control.IsMouseOver" Value="False">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}" Background="{StaticResource GreenColor}">
-                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Opacity" Value="0.9"/>
-                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
-            </Trigger>
-            
-            <Trigger Property="Control.IsMouseOver" Value="True">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}" Background="{StaticResource GreenColor}">
-                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Opacity" Value="0.7"/>
-                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
-            </Trigger>
-            
-            <Trigger Property="Button.IsPressed" Value="True">
-                <Setter Property="Opacity" Value="1"/>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect  Opacity="0"/>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-            
-            <Trigger Property="Button.IsEnabled" Value="False">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource DarkColor}" Background="{StaticResource LightColor}">
-                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Foreground" Value="{StaticResource DarkColor}"/>
-                <Setter Property="Opacity" Value="0.7"/>
-            </Trigger>
-            
-        </Style.Triggers>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="4" Direction="270" BlurRadius="5" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
     </Style>
+
+    <Style x:Key="MEAL" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LOGO}">
+        <Setter Property="TextElement.Foreground" Value="{StaticResource RedColor}"/>
+        <Setter Property="Text" Value="MEAL"/>
+    </Style>
+    <Style x:Key="FIND" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LOGO}">
+        <Setter Property="TextElement.Foreground" Value="{StaticResource GreenColor}"/>
+        <Setter Property="Text" Value="FIND"/>
+    </Style>
+
     
     
     
@@ -187,5 +149,63 @@
         </Style.Triggers>
     </Style>
 
+
+    <Style x:Key="SubmitButton" TargetType="{x:Type Button}" BasedOn="{StaticResource OutShadow}">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Triggers>
+            <Trigger Property="Control.IsMouseOver" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}" Background="{StaticResource GreenColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.9"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+            <Trigger Property="Control.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}" Background="{StaticResource GreenColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Opacity="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="Button.IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource DarkColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource DarkColor}"/>
+                <Setter Property="Opacity" Value="0.7"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>

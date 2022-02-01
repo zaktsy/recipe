@@ -26,8 +26,10 @@
 
         </DockPanel>
         <Grid Grid.Row="1" Height="400" Width="250">
+            <TextBlock Style="{StaticResource MEAL}" Margin="0,50,0,300"  HorizontalAlignment="Center" />
+            <TextBlock Style="{StaticResource FIND}" Margin="0,95,0,250" HorizontalAlignment="Center"/>
+            <TextBox Width="170" Height="25"/>
             <Button Style="{StaticResource SubmitButton}"  Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
-
         </Grid>
     </Grid>
 </Window>
