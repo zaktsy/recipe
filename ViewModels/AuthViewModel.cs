@@ -33,7 +33,6 @@ namespace recipe.ViewModels
         public AuthViewModel()
         {
             db = new recipesdbContext();
-            
         }
 
         #region commands

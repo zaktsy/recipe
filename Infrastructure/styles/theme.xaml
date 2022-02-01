@@ -29,7 +29,44 @@
         <Setter Property="Text" Value="FIND"/>
     </Style>
 
-    
+    <Style x:Key="InputRed" TargetType="{x:Type TextBox}">
+        <Setter Property="BorderBrush" Value="{StaticResource RedColor}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border"
+                            CornerRadius="3"
+                            BorderBrush="{StaticResource RedColor}"
+                            BorderThickness="1"
+                            Background="{StaticResource LightColor}"
+                            Opacity="0.8">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                    Focusable="false"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"/>  
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect ShadowDepth="4" Direction="270" BlurRadius="10" Opacity="0.5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="4" Direction="270" BlurRadius="10" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
     
     
     <Style TargetType="{x:Type Window}">
