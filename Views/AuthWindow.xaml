@@ -20,17 +20,14 @@
             <in:Interaction.Behaviors>
                 <b:DragWindow/>
             </in:Interaction.Behaviors>
-            <TextBlock Width="225"></TextBlock>
-            <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17">
-                
-            </Button>
+            <TextBlock Width="200"></TextBlock>
+            <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+            <Button DockPanel.Dock="Right" Style="{StaticResource MinimizeButton}" Command ="{Binding MinimizeWindowCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+
         </DockPanel>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Height="400" Width="250">
             <Button Style="{StaticResource SubmitButton}"  Content="Войти" Width="100" Height="25" Margin="75,300,75,75" FontSize="15" />
 
         </Grid>
     </Grid>
-    <Window.Resources>
-        <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
-    </Window.Resources>
 </Window>

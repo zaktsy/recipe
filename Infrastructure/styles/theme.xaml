@@ -140,6 +140,52 @@
             
         </Style.Triggers>
     </Style>
-    
-    
+
+    <Style x:Key="MinimizeButton" TargetType="{x:Type Button}" BasedOn="{StaticResource OutShadow}">
+        <Setter Property="Opacity" Value="0.9"/>
+        <Style.Triggers>
+
+            <Trigger Property="Control.IsMouseOver" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource DarkColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.8"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+
+            <Trigger Property="Control.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource DarkColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Opacity="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+
 </ResourceDictionary>

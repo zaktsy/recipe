@@ -63,6 +63,9 @@ namespace recipe.ViewModels
         }
         private BaseCommand closeAppCommand;
         public BaseCommand CloseAppCommand => new CloseAppCommand();
+
+        private BaseCommand minimizeWindowCommand;
+        public BaseCommand MinimizeWindowCommand => new MinimizeWindowCommand();
         #endregion
     }
 }
