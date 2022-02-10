@@ -3,7 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:recipe.Views"
+        xmlns:local="clr-namespace:recipe.Views" 
+        xmlns:in="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:b="clr-namespace:recipe.Infrastructure.behaviors" 
+        xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="MainView" Height="650" Width="1000" ResizeMode="NoResize" WindowStyle="None">
+
+    <Grid Height="650" Width="1000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" LastChildFill="True" Style="{StaticResource TopPanelRED}" Height="50">
+            <in:Interaction.Behaviors>
+                <b:DragWindow/>
+            </in:Interaction.Behaviors>
+            <Grid Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource MinimizeButton}" Command ="{Binding MinimizeWindowCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LoginedUser.Name}"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
 </Window>

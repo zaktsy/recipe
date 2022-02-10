@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="Infrastructure\styles\colors.xaml"/>
 
                 <ResourceDictionary Source="Infrastructure\styles\theme.xaml"/>
+
+                <ResourceDictionary Source="Infrastructure\styles\animations.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

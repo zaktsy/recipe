@@ -93,7 +93,7 @@
     <Style TargetType="{x:Type Grid}">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="{StaticResource Light}" Opacity="0.7"/>
+                <SolidColorBrush Color="{StaticResource Light}"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -107,7 +107,13 @@
         </Setter>
     </Style>
 
-
+    <Style x:Key="TopPanelRED" TargetType="{x:Type DockPanel}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Red}" Opacity="0.7"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="CloseButton" TargetType="{x:Type Button}" BasedOn="{StaticResource OutShadow}">
         <Setter Property="Opacity" Value="0.9"/>

@@ -18,6 +18,8 @@ namespace recipe
         AuthViewModel authVM = new AuthViewModel();
         MainViewModel mainVM;
 
+        User user;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -30,7 +32,6 @@ namespace recipe
         {
             if (!authVM.userLogin)
                 Shutdown();
-
             mainVM = new MainViewModel(authVM.LoginedUser);
 
             var mainWindow = new MainWindow() { DataContext = mainVM };

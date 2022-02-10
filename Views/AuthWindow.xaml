@@ -11,6 +11,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="250"
         ResizeMode="CanMinimize" WindowStyle="None" Topmost="False">
+    <in:Interaction.Behaviors>
+        <b:CloseBehavior />
+    </in:Interaction.Behaviors>
     <Grid Height="425" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>

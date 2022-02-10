@@ -1,17 +1,13 @@
 ﻿using recipe.Infrastructure;
 using recipe.Infrastructure.commands;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace recipe.ViewModels
 {
     internal class AuthViewModel : BaseViewModel
     {
-        recipesdbContext db;
+        private recipesdbContext db;
 
         private User loginedUser;
         private string email;

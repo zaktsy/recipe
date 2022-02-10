@@ -11,7 +11,11 @@ namespace recipe.Infrastructure.commands
     {
         public override bool CanExecute(object parameter) => true;
 
-        public override void Execute(object parameter) => Application.Current.Shutdown();
+        public override void Execute(object parameter)
+        {
+            Window window = Application.Current.MainWindow;
+            window.Close();
+        }
        
     }
 }
