@@ -11,12 +11,19 @@
         mc:Ignorable="d"
         Title="MainView" Height="650" Width="1000" ResizeMode="NoResize" WindowStyle="None">
 
+    <in:Interaction.Behaviors>
+        <b:CloseBehavior />
+    </in:Interaction.Behaviors>
     <Grid Height="650" Width="1000">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0" LastChildFill="True" Style="{StaticResource TopPanelRED}" Height="50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" LastChildFill="True" Style="{StaticResource TopPanelRED}" Height="50">
             <in:Interaction.Behaviors>
                 <b:DragWindow/>
             </in:Interaction.Behaviors>
@@ -26,13 +33,28 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="25"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
-                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource MinimizeButton}" Command ="{Binding MinimizeWindowCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding LoginedUser.Name}"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="MEAL" Style="{StaticResource LOGO}" Foreground="{StaticResource LightColor}" FontSize="18" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="FIND" Style="{StaticResource LOGO}" Foreground="{StaticResource LightColor}" FontSize="18" HorizontalAlignment="Center"/>
+                <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+                <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource MinimizeButton}" Command ="{Binding MinimizeWindowCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
+
+                <RibbonRadioButton x:Name="recipes" Command="{Binding ChangeViewModel}" CommandParameter="recipes" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="350,0,0,0">
+                    <TextBlock  Text="Рецепты" Foreground="{Binding ElementName=recipes, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
+                </RibbonRadioButton>
+
+                <RibbonRadioButton   Command="{Binding ChangeViewModel}" CommandParameter="users" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="0,0,0,0"/>
             </Grid>
         </DockPanel>
+        <ContentControl  x:Name="sideDock" Grid.Row="1" Grid.Column="1">
+
+        </ContentControl>
+        <ContentControl  x:Name="mainContent" Grid.Row="1" Grid.Column="1">
+
+        </ContentControl>
+
     </Grid>
 </Window>

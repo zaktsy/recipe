@@ -1,14 +1,20 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="OutShadow" TargetType="{x:Type Button}">
+    <Style x:Key="OutShadow" TargetType="{x:Type ButtonBase}">
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect ShadowDepth="4" Direction="270" BlurRadius="10" Opacity="0.3"/>
+                <DropShadowEffect ShadowDepth="4"  Direction="270" BlurRadius="10" Opacity="0.3"/>
             </Setter.Value>
         </Setter>
     </Style>
-
+    <!--<Style x:Key="inShadow" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <Iner
+            </Setter.Value>
+        </Setter>
+    </Style>-->
 
     <Style x:Key="LOGO" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="40"/>
@@ -216,7 +222,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}" Background="{StaticResource GreenColor}">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource GreenColor}"  Background="{StaticResource GreenColor}" >
                                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
                         </ControlTemplate>
@@ -266,4 +272,79 @@
         </Style.Triggers>
     </Style>
 
+
+    <Style x:Key="topPanelButton" TargetType="{x:Type RibbonRadioButton}" BasedOn="{StaticResource OutShadow}">
+        <Setter Property="Opacity" Value="0.9"/>
+        <Style.Triggers>
+
+            <Trigger Property="Control.IsMouseOver" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RibbonRadioButton">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource RedColor}" Background="{StaticResource RedColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.8"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+
+            <Trigger Property="Control.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RibbonRadioButton">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource RedColor}" Background="{StaticResource RedColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.6"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Opacity="0"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RibbonRadioButton">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource LightColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
+            </Trigger>
+
+            <Trigger Property="RadioButton.IsChecked" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Opacity="0"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RibbonRadioButton">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource LightColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>

@@ -10,11 +10,17 @@ namespace recipe.ViewModels
 {
     internal class MainViewModel: BaseViewModel
     {
+        
         private recipesdbContext db;
 
         private User loginedUser;
 
         public User LoginedUser { get { return loginedUser; }  set { loginedUser = value; } }
+
+
+        private BaseViewModel selectedViewModel;
+
+        public BaseViewModel SelectedViewModel { get { return selectedViewModel; } set { selectedViewModel = value; } }
 
         public MainViewModel(User user)
         {
@@ -29,6 +35,20 @@ namespace recipe.ViewModels
 
         private BaseCommand minimizeWindowCommand;
         public BaseCommand MinimizeWindowCommand => new MinimizeWindowCommand();
+
+        private LambdaCommand changeViewModel;
+        public LambdaCommand ChangeViewModel
+        {
+            get
+            {
+                return changeViewModel ??
+                    (changeViewModel = new LambdaCommand(obj =>
+                    {
+                        
+
+                    }));
+            }
+        }
         #endregion
     }
 }
