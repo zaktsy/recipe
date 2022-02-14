@@ -9,7 +9,7 @@
         xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainView" Height="650" Width="1000" ResizeMode="NoResize" WindowStyle="None">
+        Title="MEAL FIND" Height="650" Width="1000" ResizeMode="NoResize" WindowStyle="None">
 
     <in:Interaction.Behaviors>
         <b:CloseBehavior />
@@ -42,19 +42,28 @@
                 <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseButton}" Command ="{Binding CloseAppCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
                 <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource MinimizeButton}" Command ="{Binding MinimizeWindowCommand}" Width="17" Height="17" Margin="4,4,4,4"/>
 
-                <RibbonRadioButton x:Name="recipes" Command="{Binding ChangeViewModel}" CommandParameter="recipes" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="350,0,0,0">
+                <RibbonRadioButton x:Name="recipes" Command="{Binding ChangeViewModel}" CommandParameter="recipes" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="20,0,0,0" HorizontalAlignment="Left">
                     <TextBlock  Text="Рецепты" Foreground="{Binding ElementName=recipes, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
                 </RibbonRadioButton>
 
-                <RibbonRadioButton   Command="{Binding ChangeViewModel}" CommandParameter="users" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="0,0,0,0"/>
+                <RibbonRadioButton  x:Name="users" Command="{Binding ChangeViewModel}" CommandParameter="users" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="170,0,0,0"  HorizontalAlignment="Left">
+                    <TextBlock  Text="Пользователи" Foreground="{Binding ElementName=users, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
+                </RibbonRadioButton>
+
+                <RibbonRadioButton  x:Name="products" Command="{Binding ChangeViewModel}" CommandParameter="products" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="320,0,0,0"  HorizontalAlignment="Left">
+                    <TextBlock  Text="Продукты" Foreground="{Binding ElementName=products, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
+                </RibbonRadioButton>
+
+                <RibbonRadioButton  x:Name="other"  Command="{Binding ChangeViewModel}" CommandParameter="other" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="470,0,0,0"  HorizontalAlignment="Left">
+                    <TextBlock  Text="Другое" Foreground="{Binding ElementName=other, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
+                </RibbonRadioButton>
             </Grid>
         </DockPanel>
-        <ContentControl  x:Name="sideDock" Grid.Row="1" Grid.Column="1">
+        <ContentControl  x:Name="sideDock" Grid.Row="1" Grid.Column="0">
 
         </ContentControl>
-        <ContentControl  x:Name="mainContent" Grid.Row="1" Grid.Column="1">
-
+        <ContentControl  x:Name="mainContent" Grid.Row="1" Grid.Column="1" 
+                         Content="{Binding SelectedViewModel}">
         </ContentControl>
-
     </Grid>
 </Window>

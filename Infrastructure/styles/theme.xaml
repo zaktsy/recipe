@@ -344,6 +344,8 @@
                 </Setter>
                 <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
             </Trigger>
+            
+            
         </Style.Triggers>
     </Style>
     

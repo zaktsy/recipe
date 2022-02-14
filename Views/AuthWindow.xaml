@@ -9,7 +9,7 @@
         xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:AuthViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="250"
+        Title="MEAL FIND" Height="400" Width="250"
         ResizeMode="CanMinimize" WindowStyle="None" Topmost="False">
     <in:Interaction.Behaviors>
         <b:CloseBehavior />

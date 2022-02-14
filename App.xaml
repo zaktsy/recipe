@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:recipe"
+             xmlns:views="clr-namespace:recipe.Views"
+             xmlns:viewmodels ="clr-namespace:recipe.ViewModels"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +14,15 @@
 
                 <ResourceDictionary Source="Infrastructure\styles\animations.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:HelloViewModel}">
+                <views:HelloView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UsersViewModel}">
+                <views:UsersView/>
+            </DataTemplate>
         </ResourceDictionary>
+
+        
     </Application.Resources>
 </Application>
