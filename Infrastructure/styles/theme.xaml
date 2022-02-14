@@ -105,6 +105,14 @@
     </Style>
 
 
+    <Style x:Name="zag" TargetType="{x:Type TextBlock}">
+        <Setter Property="MinWidth" Value="150"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="TextElement.Foreground" Value="{StaticResource GreenColor}"/>
+    </Style>
+    
     <Style x:Key="TopPanel" TargetType="{x:Type DockPanel}">
         <Setter Property="Background">
             <Setter.Value>
@@ -406,5 +414,33 @@
             
         </Style.Triggers>
     </Style>
-    
+
+
+
+    <Style x:Key="ListboxMain" TargetType="{x:Type ListBox}">
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
+    <Style x:Key="ListboxMainItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true"
+                                CornerRadius="3"
+                                Margin="4,4,4,4">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="_Border" Property="Background" Value="{StaticResource GreenColor}"/>
+                            <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

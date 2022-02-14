@@ -18,8 +18,12 @@ namespace recipe.ViewModels
 
         public HelloViewModel(User user)
         {
-            LoginedUser = user;
-            HelloText = "C Возвращением, " + LoginedUser.Name + "!";
+            if (user != null)
+            {
+                LoginedUser = user;
+                HelloText = "C Возвращением, " + LoginedUser.Name + "!";
+            }
+            
         }
 
     }
