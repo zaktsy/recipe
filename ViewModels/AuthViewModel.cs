@@ -10,8 +10,8 @@ namespace recipe.ViewModels
         private recipesdbContext db;
 
         private User loginedUser;
-        private string email;
-        private string password;
+        private string email = "zaktsy@mail.ru";
+        private string password = "dnfhvdsd";
         public bool userLogin = false;
         private string message = "";
 

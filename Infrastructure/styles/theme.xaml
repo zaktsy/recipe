@@ -272,6 +272,64 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="DeleteButton" TargetType="{x:Type Button}" BasedOn="{StaticResource OutShadow}">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Triggers>
+            <Trigger Property="Control.IsMouseOver" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource RedColor}"  Background="{StaticResource RedColor}" >
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.9"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+            <Trigger Property="Control.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3"  BorderBrush="{StaticResource RedColor}" Background="{StaticResource RedColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="Foreground" Value="{StaticResource LightColor}"/>
+            </Trigger>
+
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect  Opacity="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="Button.IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource DarkColor}" Background="{StaticResource LightColor}">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource RedColor}"/>
+                <Setter Property="Opacity" Value="0.7"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
 
     <Style x:Key="topPanelButton" TargetType="{x:Type RibbonRadioButton}" BasedOn="{StaticResource OutShadow}">
         <Setter Property="Opacity" Value="0.9"/>
