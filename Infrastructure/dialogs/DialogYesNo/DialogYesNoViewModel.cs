@@ -13,7 +13,6 @@ namespace recipe.Infrastructure.dialogs.DialogYesNo
         public DialogYesNoViewModel(string message) : base(message)
         {
         }
-
         private LambdaCommand yesCommand;
         public LambdaCommand YesCommand
         {
@@ -29,9 +28,6 @@ namespace recipe.Infrastructure.dialogs.DialogYesNo
         }
 
         private LambdaCommand noCommand;
-
-        
-
         public LambdaCommand NoCommand
         {
             get

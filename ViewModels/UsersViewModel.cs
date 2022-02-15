@@ -14,21 +14,6 @@ namespace recipe.ViewModels
     internal class UsersViewModel: BaseViewModel
     {
         private recipesdbContext db;
-        private bool dialogVisible = false;
-        public bool DialogVisible
-        {
-            get { return this.dialogVisible; }
-            set
-            {
-                if (this.dialogVisible != value)
-                {
-                    this.dialogVisible = value;
-                    OnPropertyChanged("DialogVisible");
-                }
-            }
-        }
-
-
 
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users { get { return users; } set { users = value; OnPropertyChanged("Users"); } }
@@ -69,8 +54,14 @@ namespace recipe.ViewModels
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if(result == DialogResult.Yes)
                         {
-                            DialogViewModelBase vm1 = new DialogYesNoViewModel("Пользователь удален");
-                            DialogResult result1 = DialogService.OpenDialog(vm1, obj as Window);
+                            var id = SelectedUser.Id;
+                            User User = (from user in db.Users
+                                       where user.Id == id
+                                       select user).FirstOrDefault();
+                            db.Users.Remove(User);
+                            db.SaveChanges();
+                            Users.Remove(SelectedUser);
+                            SelectedUser = null;
                         }
                     },
                     (obj) => SelectedUser != null));
