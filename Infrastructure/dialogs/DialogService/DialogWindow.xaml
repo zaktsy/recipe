@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:recipe.Infrastructure.dialogs.DialogService"
-        mc:Ignorable="d"
-        Title="DialogWindow" Height="450" Width="800"
+        xmlns:local="clr-namespace:recipe.Infrastructure.dialogs.DialogService" xmlns:in="http://schemas.microsoft.com/xaml/behaviors" xmlns:b="clr-namespace:recipe.Infrastructure.behaviors"
+        mc:Ignorable="d" Height="450" Width="800"
         WindowStartupLocation="CenterOwner"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None"
+        Background="{StaticResource LightColor}">
     <ContentPresenter x:Name="ContentPresenter" Content="{Binding}">
-        
     </ContentPresenter>
 </Window>

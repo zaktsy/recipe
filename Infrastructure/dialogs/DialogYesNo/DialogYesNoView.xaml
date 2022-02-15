@@ -3,17 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                xmlns:vm="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo" 
+                xmlns:vm="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo" xmlns:in="http://schemas.microsoft.com/xaml/behaviors" xmlns:b="clr-namespace:recipe.Infrastructure.behaviors"
                 d:DataContext="{d:DesignInstance Type = vm:DialogYesNoViewModel}"
                 mc:Ignorable="d"  
              d:DesignHeight="100" d:DesignWidth="300">
-    <Grid Margin="4">
-        <Label Content="{Binding Message}"/>
-        <Button Content="Да" HorizontalAlignment="Left" Margin="135,70,0,0" VerticalAlignment="Top" Width="75"   
+    <Border BorderBrush="{StaticResource RedColor}" BorderThickness="2">
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Label Content="{Binding Message}" Margin="10" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9"/>
+                <Button Content="Да" Style="{StaticResource DeleteButton}" HorizontalAlignment="Left" Margin="125,65,5,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding YesCommand}"   
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-        <Button Content="Нет" HorizontalAlignment="Left" Margin="215,70,0,0" VerticalAlignment="Top" Width="75"   
+                <Button Content="Нет" Style="{StaticResource SubmitButton}" HorizontalAlignment="Left" Margin="205,65,5,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding NoCommand}"  
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-    </Grid>
+            </Grid>
+
+        </Grid>
+
+    </Border>
 </ContentControl> 
