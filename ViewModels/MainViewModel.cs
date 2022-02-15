@@ -11,7 +11,7 @@ namespace recipe.ViewModels
 {
     internal class MainViewModel: BaseViewModel
     {
-        
+
         private recipesdbContext db;
 
         private User loginedUser;

@@ -17,7 +17,6 @@ namespace recipe
     {
         AuthViewModel authVM = new AuthViewModel();
         MainViewModel mainVM;
-
         User user;
 
         protected override void OnStartup(StartupEventArgs e)
