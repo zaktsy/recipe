@@ -31,6 +31,9 @@
             <DataTemplate DataType="{x:Type viewmodels:FridgeViewModel}">
                 <views:FridgeView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ShoppingListViewModel}">
+                <views:ShoppingListView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>
             </DataTemplate>

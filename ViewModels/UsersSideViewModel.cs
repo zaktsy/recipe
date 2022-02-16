@@ -32,16 +32,41 @@ namespace recipe.ViewModels
                     },
                     (obj) =>
                     {
-                        var vm = parent.SelectedViewModel;
-                        if (vm.name == "users")
+                        var vm = parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                        if (vm != null)
                         {
-                            var vmUser = (UsersViewModel)vm; 
+                            var vmUser = (UsersViewModel)vm;
                             if (vmUser.SelectedUser != null) { return true; }
-                        }  
+                        }
                         return false;
                     }));
             }
         }
+
+
+        private LambdaCommand shoppingListCommand;
+        public LambdaCommand ShoppingListCommand
+        {
+            get
+            {
+                return shoppingListCommand ??
+                    (shoppingListCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("shoppingList");
+                    },
+                    (obj) =>
+                    {
+                        var vm = parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                        if (vm != null)
+                        {
+                            var vmUser = (UsersViewModel)vm;
+                            if (vmUser.SelectedUser != null) { return true; }
+                        }
+                        return false;
+                    }));
+            }
+        }
+
 
         private LambdaCommand usersCommand;
         public LambdaCommand UsersCommand

@@ -72,12 +72,22 @@ namespace recipe.ViewModels
                                 }
                                 else { SelectedViewModel = vm; }
                                 break;
+
                             case "fridge":
                                 vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
                                 if (vm != null)
                                 {
                                     var uvm = (UsersViewModel)vm;
                                     SelectedViewModel = new FridgeViewModel(this, uvm.SelectedUser);
+                                }
+                                break;
+
+                            case "shoppingList":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                if (vm != null)
+                                {
+                                    var uvm = (UsersViewModel)vm;
+                                    SelectedViewModel = new ShoppingListViewModel(this, uvm.SelectedUser);
                                 }
                                 break;
                         }
