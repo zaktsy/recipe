@@ -11,6 +11,8 @@ namespace recipe.ViewModels
 {
     internal abstract class BaseViewModel: INotifyPropertyChanged
     {
+        public string name;
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)

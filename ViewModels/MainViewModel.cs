@@ -37,6 +37,7 @@ namespace recipe.ViewModels
             LoginedUser = user;
             selectedViewModel = new HelloViewModel(user);
             ViewModels.Add(selectedViewModel);
+            name = "hello";
         }
 
         #region commands
@@ -55,10 +56,11 @@ namespace recipe.ViewModels
                 return changeViewModel ??
                     (changeViewModel = new LambdaCommand(obj =>
                     {
+                        var vm = SelectedViewModel;
                         switch (obj)
                         {
                             case "users":
-                                var vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
                                 if (vm == null)
                                 {
                                     ViewModels.Add(new UsersViewModel(this));
@@ -69,6 +71,14 @@ namespace recipe.ViewModels
                                     SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
                                 }
                                 else { SelectedViewModel = vm; }
+                                break;
+                            case "fridge":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                if (vm != null)
+                                {
+                                    var uvm = (UsersViewModel)vm;
+                                    SelectedViewModel = new FridgeViewModel(this, uvm.SelectedUser);
+                                }
                                 break;
                         }
 

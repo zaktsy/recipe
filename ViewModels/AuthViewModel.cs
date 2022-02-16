@@ -29,9 +29,11 @@ namespace recipe.ViewModels
         public string Password { get { return password; } set { password = value; OnPropertyChanged("Password"); } }
         public bool UserLogin { get { return userLogin; } set { userLogin = value; OnPropertyChanged("UserLogin"); } }
         public string Message { get { return message; } set { message = value; OnPropertyChanged("Message"); } }
+
         public AuthViewModel()
         {
             db = new recipesdbContext();
+            name = "auth";
         }
 
         #region commands

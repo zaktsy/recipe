@@ -28,6 +28,7 @@ namespace recipe.ViewModels
             db = new recipesdbContext();
             this.parent = parent;
             Users = new ObservableCollection<User>((from user in db.Users select user).ToList());
+            name = "users";
         }
 
         #region commands

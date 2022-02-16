@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:recipe.Views"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:recipe.Views" xmlns:viewmodels="clr-namespace:recipe.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UsersSideViewModel}"
+                mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="200"
                 Background="Transparent">
     <Grid>
-        <Label Content="SideDock" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" Command="{Binding UsersCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Пользователи" FontSize="18" Opacity="0.75"/>
+        <Button Grid.Row="2" Command="{Binding FridgeCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Холодильник" FontSize="18" Opacity="0.75"/>
     </Grid>
 </ContentControl>

@@ -23,7 +23,7 @@ namespace recipe.ViewModels
                 LoginedUser = user;
                 HelloText = "C Возвращением, " + LoginedUser.Name + "!";
             }
-            
+            name = "hello";
         }
 
     }
