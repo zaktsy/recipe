@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:recipe.Views"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:recipe.Views" xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
+                d:DataContext="{d:DesignInstance Type=viewmodels:FridgeViewModel}"
+                mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,6 +21,7 @@
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameOfFridge}" Style="{StaticResource zag}" FontSize="40"/>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1">
             <TextBlock Text="Имя" Style="{StaticResource zag}"/>
+            <TextBlock Text="Количество" Style="{StaticResource zag}" MinWidth="75"/>
         </StackPanel>
         <ListBox ItemContainerStyle="{StaticResource ListboxMainItem}"  
                  Style="{StaticResource ListboxMain}" 
@@ -28,12 +30,15 @@
                  ItemsSource="{Binding Products}" 
                  d:ItemsSource="{d:SampleData ItemCount=5}" 
                  Background="Transparent"
-                 FontSize="18">
+                 FontSize="18"
+                 Width="350"
+                 HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Product.Name}" Margin="4" MinWidth="150"/>
-                        <TextBlock Text="{Binding Amount}" Margin="4" MinWidth="150"/>
+                        <TextBlock Text="{Binding Amount}" Margin="4" MinWidth="75" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{Binding Measure.Name}" Margin="4" MinWidth="75"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -43,6 +48,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Button Command="{Binding DelFridgeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="1" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
         </Grid>
     </Grid>
 </ContentControl>

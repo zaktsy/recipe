@@ -32,7 +32,9 @@
                  ItemsSource="{Binding Users}" 
                  d:ItemsSource="{d:SampleData ItemCount=5}" 
                  Background="Transparent"
-                 FontSize="18">
+                 FontSize="18"
+                 Width="600"
+                 HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

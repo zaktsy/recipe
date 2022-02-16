@@ -11,10 +11,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Grid.Row="1" Command="{Binding UsersCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Пользователи" FontSize="18" Opacity="0.75"/>
-        <Button Grid.Row="2" Command="{Binding FridgeCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Холодильник" FontSize="18" Opacity="0.75"/>
+        <TextBlock Grid.Row="2" Style="{StaticResource Alarm}" Text="Пользователь" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+        <Button Grid.Row="3" Command="{Binding FridgeCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Холодильник" FontSize="18" Opacity="0.75"/>
     </Grid>
 </ContentControl>

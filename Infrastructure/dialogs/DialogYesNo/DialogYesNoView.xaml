@@ -16,10 +16,10 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
                 <Label Content="{Binding Message}" Margin="10" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9"/>
-                <Button Content="Да" Style="{StaticResource DeleteButton}" HorizontalAlignment="Left" Margin="125,65,5,10" VerticalAlignment="Top" Width="75"   
+                <Button Content="Да" Style="{StaticResource DeleteButton}" HorizontalAlignment="Right" Margin="0,65,95,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding YesCommand}"   
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-                <Button Content="Нет" Style="{StaticResource SubmitButton}" HorizontalAlignment="Left" Margin="205,65,5,10" VerticalAlignment="Top" Width="75"   
+                <Button Content="Нет" Style="{StaticResource SubmitButton}" HorizontalAlignment="Right" Margin="0,65,5,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding NoCommand}"  
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
             </Grid>
