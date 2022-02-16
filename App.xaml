@@ -25,9 +25,13 @@
             <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
                 <views:MainWindow/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:UsersSideViewModel}">
+                <views:UsersSideView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>
             </DataTemplate>
+            
         </ResourceDictionary>
 
         

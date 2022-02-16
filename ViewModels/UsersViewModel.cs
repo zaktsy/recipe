@@ -15,15 +15,18 @@ namespace recipe.ViewModels
     {
         private recipesdbContext db;
 
+        private MainViewModel parent;
+
         private ObservableCollection<User> users;
         public ObservableCollection<User> Users { get { return users; } set { users = value; OnPropertyChanged("Users"); } }
 
         private User selectedUser;
         public User SelectedUser { get { return selectedUser; } set { selectedUser = value; OnPropertyChanged("SelectedUser"); } }
 
-        public UsersViewModel()
+        public UsersViewModel(MainViewModel parent)
         {
             db = new recipesdbContext();
+            this.parent = parent;
             Users = new ObservableCollection<User>((from user in db.Users select user).ToList());
         }
 

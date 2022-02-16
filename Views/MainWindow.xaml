@@ -59,8 +59,9 @@
                 </RibbonRadioButton>
             </Grid>
         </DockPanel>
-        <ContentControl  x:Name="sideDock" Grid.Row="1" Grid.Column="0">
-
+        <ContentControl  x:Name="sideDock" Grid.Row="1" Grid.Column="0"
+                         Content="{Binding SelectedSideViewModel}">
+                        
         </ContentControl>
         <ContentControl  x:Name="mainContent" Grid.Row="1" Grid.Column="1" 
                          Content="{Binding SelectedViewModel}">
