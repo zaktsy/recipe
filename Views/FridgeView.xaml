@@ -32,10 +32,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <!--<TextBlock Text="{Binding Name}" Margin="4" MinWidth="150"/>
-                        <TextBlock Text="{Binding Surname}" Margin="4" MinWidth="150"/>
-                        <TextBlock Text="{Binding Email}" Margin="4" MinWidth="150"/>
-                        <TextBlock Text="{Binding Admin}" Margin="4"/>-->
+                        <TextBlock Text="{Binding Product.Name}" Margin="4" MinWidth="150"/>
+                        <TextBlock Text="{Binding Amount}" Margin="4" MinWidth="150"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

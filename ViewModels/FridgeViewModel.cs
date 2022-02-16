@@ -17,11 +17,11 @@ namespace recipe.ViewModels
         private string nameOfFridge;
         public string NameOfFridge { get { return nameOfFridge; } set { nameOfFridge = value; OnPropertyChanged("NameOfFridge"); } }
 
-        private ObservableCollection<Product> products;
-        public ObservableCollection<Product> Products { get { return products; } set { products = value; OnPropertyChanged("Products"); } }
+        private ObservableCollection<Fridge> products;
+        public ObservableCollection<Fridge> Products { get { return products; } set { products = value; OnPropertyChanged("Products"); } }
 
-        private Product selectedProduct;
-        public Product SelectedProduct { get { return selectedProduct; } set { selectedProduct = value; OnPropertyChanged("SelectedProduct"); } }
+        private Fridge selectedProduct;
+        public Fridge SelectedProduct { get { return selectedProduct; } set { selectedProduct = value; OnPropertyChanged("SelectedProduct"); } }
 
         public FridgeViewModel(MainViewModel parent, User user)
         {
@@ -29,6 +29,12 @@ namespace recipe.ViewModels
             this.parent = parent;
             this.user = user;
             NameOfFridge = "Холодильник пользователя "+ user.Name;
+
+            Products = new ObservableCollection<Fridge>(db.Fridges.Where(u => u.Userid == user.Id).ToList());
+            for(int i = 0; i< Products.Count; i++)
+            {
+                Products[i].Product = db.Products.Where(u => u.Id == Products[i].Productid).FirstOrDefault();
+            }
         }
     }
 }
