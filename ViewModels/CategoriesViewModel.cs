@@ -24,6 +24,9 @@ namespace recipe.ViewModels
         private Category selectedCategory;
         public Category SelectedCategory { get { return selectedCategory; } set { selectedCategory = value; OnPropertyChanged("SelectedCategory"); } }
 
+        private string search;
+        public string Search { get { return search; } set { search = value; OnPropertyChanged("Search"); SelectedCategory = Categories.FirstOrDefault(x => x.Name.ToLower().StartsWith(Search.ToLower())); } }
+
         public CategoriesViewModel(MainViewModel parent)
         {
             db = new recipesdbContext();
