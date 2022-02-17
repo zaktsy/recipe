@@ -90,6 +90,31 @@ namespace recipe.ViewModels
                     (obj) => SelectedCategory != null));
             }
         }
+
+        private LambdaCommand newCategoryCommand;
+        public LambdaCommand NewCategoryCommand
+        {
+            get
+            {
+                return newCategoryCommand ??
+                    (newCategoryCommand = new LambdaCommand(obj =>
+                    {
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для новой категории:");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var name = vm.Name;
+                            var id = SelectedCategory.Id;
+                            Category cat = new Category();
+                            cat.Name = name;
+                            db.Categories.Add(cat);
+                            db.SaveChanges();
+                            Categories.Add(cat);
+                        }
+
+                    }));
+            }
+        }
         #endregion
     }
 }

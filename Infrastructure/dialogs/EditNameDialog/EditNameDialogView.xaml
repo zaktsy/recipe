@@ -16,7 +16,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
-                <Label Content="dsdsds" Margin="10" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9" Height="40" VerticalAlignment="Top"/>
+                <Label Content="{Binding Message}" Margin="10" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9" Height="40" VerticalAlignment="Top"/>
                 <Button Content="Да" Style="{StaticResource SubmitButton}" HorizontalAlignment="Right" Margin="0,115,95,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding YesCommand}"   
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>

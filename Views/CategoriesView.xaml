@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Категории" Style="{StaticResource zag}" FontSize="40"/>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1">
@@ -43,9 +43,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding DelCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="1" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
+            <Button Command="{Binding NewCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Добавить"/>
+            <Button Command="{Binding DelCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="2" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
             <Button Command="{Binding EditCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Редактировать"/>
+            
         </Grid>
     </Grid>
 </ContentControl>
