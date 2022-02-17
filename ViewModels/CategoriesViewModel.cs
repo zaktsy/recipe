@@ -1,6 +1,7 @@
 ﻿using recipe.Infrastructure;
 using recipe.Infrastructure.dialogs.DialogService;
 using recipe.Infrastructure.dialogs.DialogYesNo;
+using recipe.Infrastructure.dialogs.EditNameDialog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,6 +57,35 @@ namespace recipe.ViewModels
                             Categories.Remove(SelectedCategory);
                             SelectedCategory = null;
                         }
+                    },
+                    (obj) => SelectedCategory != null));
+            }
+        }
+
+        private LambdaCommand editCategoryCommand;
+        public LambdaCommand EditCategoryCommand
+        {
+            get
+            {
+                return editCategoryCommand ??
+                    (editCategoryCommand = new LambdaCommand(obj =>
+                    {
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var name = vm.Name;
+                            var id = SelectedCategory.Id;
+                            Category cat = (from c in db.Categories
+                                            where c.Id == id
+                                            select c).FirstOrDefault();
+                            cat.Name = name;
+                            db.SaveChanges();
+                            Categories.Remove(SelectedCategory);
+                            Categories.Add(cat);
+                            SelectedCategory = cat;
+                        }
+
                     },
                     (obj) => SelectedCategory != null));
             }

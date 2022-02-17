@@ -45,6 +45,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding DelCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="1" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
+            <Button Command="{Binding EditCategoryCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Редактировать"/>
         </Grid>
     </Grid>
 </ContentControl>

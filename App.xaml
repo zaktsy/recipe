@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:recipe"
              xmlns:views="clr-namespace:recipe.Views"
              xmlns:viewmodels ="clr-namespace:recipe.ViewModels"
-              xmlns:dialogYesNo="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo" 
+              xmlns:dialogYesNo="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo"
+             xmlns:editNameDialog="clr-namespace:recipe.Infrastructure.dialogs.EditNameDialog"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -44,6 +45,9 @@
             
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type editNameDialog:EditNameDialogViewModel}">
+                <editNameDialog:EditNameDialogView/>
             </DataTemplate>
             
         </ResourceDictionary>
