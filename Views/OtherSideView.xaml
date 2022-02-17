@@ -1,0 +1,25 @@
+﻿<ContentControl x:Class="recipe.Views.OtherSideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:recipe.Views" xmlns:viewmodels="clr-namespace:recipe.ViewModels" 
+                d:DataContext="{d:DesignInstance Type=viewmodels:OtherSideViewModel}"
+                mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="200"
+                Background="Transparent">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" Command="{Binding CategoriesCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Категории" FontSize="18" Opacity="0.75"/>
+        <!--<Button Grid.Row="2" Command="{Binding FridgeCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Холодильник" FontSize="18" Opacity="0.75"/>
+        <Button Grid.Row="3" Command="{Binding ShoppingListCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Список покупок" FontSize="18" Opacity="0.75"/>-->
+    </Grid>
+</ContentControl>

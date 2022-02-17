@@ -1,11 +1,13 @@
 ﻿using recipe.Infrastructure;
 using recipe.Infrastructure.dialogs.DialogService;
+using recipe.Infrastructure.dialogs.DialogYesNo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace recipe.ViewModels
 {
@@ -17,7 +19,7 @@ namespace recipe.ViewModels
         private User user;
 
         private string nameOfSL;
-        public string NameOfSL { get { return nameOfSL; } set { nameOfSL = value; OnPropertyChanged("NameOfFridge"); } }
+        public string NameOfSL { get { return nameOfSL; } set { nameOfSL = value; OnPropertyChanged("NameOfSL"); } }
 
         private ObservableCollection<ShoppingList> shoppingLists;
         public ObservableCollection<ShoppingList> ShoppingLists { get { return shoppingLists; } set { shoppingLists = value; OnPropertyChanged("ShoppingLists"); } }
@@ -31,6 +33,7 @@ namespace recipe.ViewModels
             this.parent = parent;
             this.user = user;
             NameOfSL = "Список покупок пользователя " + user.Name;
+            name = "shoppingList";
 
             ShoppingLists = new ObservableCollection<ShoppingList>(db.ShoppingLists.Where(u => u.Userid == user.Id).ToList());
             for (int i = 0; i < ShoppingLists.Count; i++)
@@ -51,20 +54,20 @@ namespace recipe.ViewModels
                 return delShoppingListCommand ??
                     (delShoppingListCommand = new LambdaCommand(obj =>
                     {
-                        //DialogViewModelBase vm = new DialogYesNoViewModel("Удалить продукт из холодильника пользователя??");
-                        //DialogResult result = DialogService.OpenDialog(vm, obj as Window);
-                        //if (result == DialogResult.Yes)
-                        //{
-                        //    var uid = SelectedProduct.Userid;
-                        //    var pid = SelectedProduct.Productid;
-                        //    Fridge fr = (from fridge in db.Fridges
-                        //                 where fridge.Userid == uid && fridge.Productid == pid
-                        //                 select fridge).FirstOrDefault();
-                        //    db.Fridges.Remove(fr);
-                        //    db.SaveChanges();
-                        //    Products.Remove(SelectedProduct);
-                        //    SelectedProduct = null;
-                        //}
+                        DialogViewModelBase vm = new DialogYesNoViewModel("Удалить продукт из холодильника пользователя??");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var uid = SelectedShoppingList.Userid;
+                            var pid = SelectedShoppingList.Productid;
+                            ShoppingList sl = (from shoppingList in db.ShoppingLists
+                                               where shoppingList.Userid == uid && shoppingList.Productid == pid
+                                               select shoppingList).FirstOrDefault();
+                            db.ShoppingLists.Remove(sl);
+                            db.SaveChanges();
+                            ShoppingLists.Remove(SelectedShoppingList);
+                            SelectedShoppingList = null;
+                        }
                     },
                     (obj) => SelectedShoppingList != null));
             }

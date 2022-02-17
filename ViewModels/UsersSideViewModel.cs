@@ -32,11 +32,15 @@ namespace recipe.ViewModels
                     },
                     (obj) =>
                     {
-                        var vm = parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                        var vm = parent.SelectedViewModel;
                         if (vm != null)
                         {
-                            var vmUser = (UsersViewModel)vm;
-                            if (vmUser.SelectedUser != null) { return true; }
+                            if (vm.name == "fridge") { return false; }
+                            else
+                            {
+                                var uvm = (UsersViewModel)parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                if (uvm.SelectedUser != null) { return true; }
+                            }
                         }
                         return false;
                     }));
@@ -56,11 +60,16 @@ namespace recipe.ViewModels
                     },
                     (obj) =>
                     {
-                        var vm = parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                        var vm = parent.SelectedViewModel;
                         if (vm != null)
                         {
-                            var vmUser = (UsersViewModel)vm;
-                            if (vmUser.SelectedUser != null) { return true; }
+                            if (vm.name == "shoppingList") { return false; }
+                            else
+                            {
+                                var uvm = (UsersViewModel)parent.ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                if (uvm.SelectedUser != null) { return true; }
+                            }
+                            
                         }
                         return false;
                     }));

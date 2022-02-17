@@ -33,6 +33,7 @@ namespace recipe.ViewModels
             this.parent = parent;
             this.user = user;
             NameOfFridge = "Холодильник пользователя "+ user.Name;
+            name = "fridge";
 
             Products = new ObservableCollection<Fridge>(db.Fridges.Where(u => u.Userid == user.Id).ToList());
             for(int i = 0; i< Products.Count; i++)

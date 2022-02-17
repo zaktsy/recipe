@@ -28,12 +28,20 @@
             <DataTemplate DataType="{x:Type viewmodels:UsersSideViewModel}">
                 <views:UsersSideView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:OtherSideViewModel}">
+                <views:OtherSideView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:FridgeViewModel}">
                 <views:FridgeView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:ShoppingListViewModel}">
                 <views:ShoppingListView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:CategoriesViewModel}">
+                <views:CategoriesView/>
+            </DataTemplate>
+            
+            
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>
             </DataTemplate>

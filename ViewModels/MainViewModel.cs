@@ -57,20 +57,27 @@ namespace recipe.ViewModels
                     (changeViewModel = new LambdaCommand(obj =>
                     {
                         var vm = SelectedViewModel;
+                        var svm = SelectedSideViewModel;
                         switch (obj)
                         {
                             case "users":
                                 vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
+                                svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
                                 if (vm == null)
                                 {
                                     ViewModels.Add(new UsersViewModel(this));
                                     SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
 
-                                    var svm = new UsersSideViewModel(this);
-                                    SideViewModels.Add(svm);
+                                    SideViewModels.Add(new UsersSideViewModel(this));
                                     SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
                                 }
-                                else { SelectedViewModel = vm; }
+                                else 
+                                {
+                                    OnPropertyChanged("SelectedUser");
+                                    OnPropertyChanged("Users");
+                                    SelectedViewModel = vm;
+                                    SelectedSideViewModel = svm;
+                                }
                                 break;
 
                             case "fridge":
@@ -79,6 +86,13 @@ namespace recipe.ViewModels
                                 {
                                     var uvm = (UsersViewModel)vm;
                                     SelectedViewModel = new FridgeViewModel(this, uvm.SelectedUser);
+                                    var fvm = (FridgeViewModel)SelectedViewModel;
+                                    fvm.Products = new ObservableCollection<Fridge>(db.Fridges.Where(u => u.Userid == uvm.SelectedUser.Id).ToList());
+                                    for (int i = 0; i < fvm.Products.Count; i++)
+                                    {
+                                        fvm.Products[i].Product = db.Products.Where(u => u.Id == fvm.Products[i].Productid).FirstOrDefault();
+                                        fvm.Products[i].Measure = db.Measures.Where(u => u.Id == fvm.Products[i].Measureid).FirstOrDefault();
+                                    }
                                 }
                                 break;
 
@@ -88,6 +102,33 @@ namespace recipe.ViewModels
                                 {
                                     var uvm = (UsersViewModel)vm;
                                     SelectedViewModel = new ShoppingListViewModel(this, uvm.SelectedUser);
+                                    var slvm = (ShoppingListViewModel)SelectedViewModel;
+                                    slvm.ShoppingLists = new ObservableCollection<ShoppingList>(db.ShoppingLists.Where(u => u.Userid == uvm.SelectedUser.Id).ToList());
+                                    for (int i = 0; i < slvm.ShoppingLists.Count; i++)
+                                    {
+                                        slvm.ShoppingLists[i].Product = db.Products.Where(u => u.Id == slvm.ShoppingLists[i].Productid).FirstOrDefault();
+                                        slvm.ShoppingLists[i].Measure = db.Measures.Where(u => u.Id == slvm.ShoppingLists[i].Measureid).FirstOrDefault();
+                                    }
+                                }
+                                break;
+
+                            case "сategories":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(CategoriesViewModel));
+                                svm = SideViewModels.Find(x => x.GetType() == typeof(OtherSideViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new CategoriesViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(CategoriesViewModel));
+
+                                    SideViewModels.Add(new OtherSideViewModel(this));
+                                    SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(OtherSideViewModel));
+                                }
+                                else
+                                {
+                                    var cvm = (CategoriesViewModel)vm;
+                                    SelectedViewModel = vm;
+                                    SelectedSideViewModel = svm;
+                                    cvm.Categories = new ObservableCollection<Category>(db.Categories.ToList());
                                 }
                                 break;
                         }

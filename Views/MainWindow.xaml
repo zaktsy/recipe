@@ -54,7 +54,7 @@
                     <TextBlock  Text="Продукты" Foreground="{Binding ElementName=products, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
                 </RibbonRadioButton>
 
-                <RibbonRadioButton  x:Name="other"  Command="{Binding ChangeViewModel}" CommandParameter="other" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="470,0,0,0"  HorizontalAlignment="Left">
+                <RibbonRadioButton  x:Name="other"  Command="{Binding ChangeViewModel}" CommandParameter="сategories" GroupName="top" Style="{StaticResource topPanelButton}" Grid.RowSpan="2" Grid.Column="1"  Width="115" Height="40" Margin="470,0,0,0"  HorizontalAlignment="Left">
                     <TextBlock  Text="Другое" Foreground="{Binding ElementName=other, Path=Foreground}" FontSize="16" Height="40" Margin="0,10,0,0"/>
                 </RibbonRadioButton>
             </Grid>
