@@ -131,6 +131,22 @@ namespace recipe.ViewModels
                                     cvm.Categories = new ObservableCollection<Category>(db.Categories.ToList());
                                 }
                                 break;
+
+                            case "meals":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(MealViewModel));
+                                if(vm == null)
+                                {
+                                    ViewModels.Add(new MealViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(MealViewModel));
+                                }
+                                else
+                                {
+                                    var mvm = (MealViewModel)vm;
+                                    mvm.Meals = new ObservableCollection<Meal>(db.Meals.ToList());
+                                    SelectedViewModel = vm;
+                                }
+                                
+                                break;
                         }
 
                     }));

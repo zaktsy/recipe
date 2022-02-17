@@ -107,7 +107,6 @@ namespace recipe.ViewModels
                         if (result == DialogResult.Yes)
                         {
                             var name = vm.Name;
-                            var id = SelectedCategory.Id;
                             Category cat = new Category();
                             cat.Name = name;
                             db.Categories.Add(cat);

@@ -39,6 +39,26 @@ namespace recipe.ViewModels
                     }));
             }
         }
+
+        private LambdaCommand mealsCommand;
+        public LambdaCommand MealsCommand
+        {
+            get
+            {
+                return mealsCommand ??
+                    (mealsCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("meals");
+                    },
+                    (obj) =>
+                    {
+                        var vm = parent.SelectedViewModel;
+                        if (vm.name == "meals") { return false; }
+                        return true;
+
+                    }));
+            }
+        }
         #endregion
     }
 }
