@@ -19,6 +19,8 @@
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Пользователи" Style="{StaticResource zag}" FontSize="40"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
+             Margin="0,0,25,0" Padding="3" Style="{StaticResource InputRed}" Height="40" Width="250" HorizontalAlignment="Right"/>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1">
             <TextBlock Text="Имя" Style="{StaticResource zag}"/>
             <TextBlock Text="Фамилия" Style="{StaticResource zag}"/>
@@ -34,7 +36,9 @@
                  Background="Transparent"
                  FontSize="18"
                  Width="600"
-                 HorizontalAlignment="Left">
+                 HorizontalAlignment="Left"
+                 SelectionChanged="OnSelectionChanged"
+                 VirtualizingPanel.ScrollUnit="Pixel">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

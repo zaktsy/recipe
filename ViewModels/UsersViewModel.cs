@@ -23,6 +23,31 @@ namespace recipe.ViewModels
         private User selectedUser;
         public User SelectedUser { get { return selectedUser; } set { selectedUser = value; OnPropertyChanged("SelectedUser"); } }
 
+        private string search;
+        public string Search
+        {
+            get { return search; }
+            set 
+            { 
+                search = value; 
+                OnPropertyChanged("Search");
+                var byname = Users.FirstOrDefault(x => x.Name.ToLower().StartsWith(Search.ToLower()));
+                var bysurname = Users.FirstOrDefault(x => x.Surname.ToLower().StartsWith(Search.ToLower()));
+                var byemail = Users.FirstOrDefault(x => x.Email.ToLower().StartsWith(Search.ToLower()));
+                if(byname == null)
+                {
+                    if(bysurname == null)
+                    {
+                        SelectedUser = byemail;
+                    }
+                    else { SelectedUser = bysurname; }
+                }
+                else { SelectedUser = byname; }
+
+            }
+
+        }
+
         public UsersViewModel(MainViewModel parent)
         {
             db = new recipesdbContext();
