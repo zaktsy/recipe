@@ -96,6 +96,48 @@ namespace recipe.ViewModels
                     (obj) => SelectedUser != null));
             }
         }
+
+        private LambdaCommand adminUserCommand;
+        public LambdaCommand AdminUserCommand
+        {
+            get
+            {
+                return adminUserCommand ??
+                    (adminUserCommand = new LambdaCommand(obj =>
+                    {
+                        if (SelectedUser.Admin == true)
+                        {
+                            DialogViewModelBase vm = new DialogYesNoViewModel("Забрать статус администратора?");
+                            DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                            if( result == DialogResult.Yes)
+                            {
+                                SelectedUser.Admin = false;
+                                db.SaveChanges();
+                                User user = SelectedUser;
+                                Users.Remove(SelectedUser);
+                                Users.Add(user);
+                                SelectedUser = user;
+                            }
+                        }
+                        else
+                        {
+                            DialogViewModelBase vm = new DialogYesNoViewModel("Сделать пользователя Администратором?");
+                            DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                            if (result == DialogResult.Yes)
+                            {
+                                SelectedUser.Admin = true;
+                                db.SaveChanges();
+                                User user = SelectedUser;
+                                Users.Remove(SelectedUser);
+                                Users.Add(user);
+                                SelectedUser = user;
+                            }
+                        }
+
+                    },
+                    (obj) => SelectedUser != null));
+            }
+        }
         #endregion
     }
 }
