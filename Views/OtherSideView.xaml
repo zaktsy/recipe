@@ -20,6 +20,7 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="1" Command="{Binding CategoriesCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Категории" FontSize="18" Opacity="0.75"/>
         <Button Grid.Row="2" Command="{Binding MealsCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Приемы пищи" FontSize="18" Opacity="0.75"/>
-
+        <Button Grid.Row="3" Command="{Binding KitchensCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Кухни" FontSize="18" Opacity="0.75"/>
+        <Button Grid.Row="3" Command="{Binding PeculiaritiesCommand}" Style="{StaticResource SubmitButton}" Height="40" Width="150" Content="Особенности" FontSize="18" Opacity="0.75"/>
     </Grid>
 </ContentControl>

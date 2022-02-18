@@ -59,6 +59,46 @@ namespace recipe.ViewModels
                     }));
             }
         }
+
+        private LambdaCommand kitchensCommand;
+        public LambdaCommand KitchensCommand
+        {
+            get
+            {
+                return kitchensCommand ??
+                    (kitchensCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("kitchens");
+                    },
+                    (obj) =>
+                    {
+                        var vm = parent.SelectedViewModel;
+                        if (vm.name == "kitchens") { return false; }
+                        return true;
+
+                    }));
+            }
+        }
+
+        private LambdaCommand peculiaritiesCommand;
+        public LambdaCommand PeculiaritiesCommand
+        {
+            get
+            {
+                return peculiaritiesCommand ??
+                    (peculiaritiesCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("peculiarities");
+                    },
+                    (obj) =>
+                    {
+                        var vm = parent.SelectedViewModel;
+                        if (vm.name == "peculiarities") { return false; }
+                        return true;
+
+                    }));
+            }
+        }
         #endregion
     }
 }

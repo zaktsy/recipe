@@ -146,6 +146,36 @@ namespace recipe.ViewModels
                                     SelectedViewModel = vm;
                                 }
                                 
+                                break; 
+
+                            case "kitchens":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new KitchensViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                }
+                                else
+                                {
+                                    var kvm = (KitchensViewModel)vm;
+                                    kvm.Kitchens = new ObservableCollection<Kitchen>(db.Kitchens.ToList());
+                                    SelectedViewModel = vm;
+                                }
+                                break;
+
+                            case "peculiarities":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new KitchensViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                }
+                                else
+                                {
+                                    var kvm = (KitchensViewModel)vm;
+                                    kvm.Kitchens = new ObservableCollection<Kitchen>(db.Kitchens.ToList());
+                                    SelectedViewModel = vm;
+                                }
                                 break;
                         }
 
