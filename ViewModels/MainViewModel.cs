@@ -177,6 +177,21 @@ namespace recipe.ViewModels
                                     SelectedViewModel = vm;
                                 }
                                 break;
+
+                            case "measures":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(MeasuresViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new MeasuresViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(MeasuresViewModel));
+                                }
+                                else
+                                {
+                                    var mvm = (MeasuresViewModel)vm;
+                                    mvm.Measures = new ObservableCollection<Measure>(db.Measures.ToList());
+                                    SelectedViewModel = vm;
+                                }
+                                break;
                         }
 
                     }));

@@ -99,6 +99,26 @@ namespace recipe.ViewModels
                     }));
             }
         }
+
+        private LambdaCommand measuresCommand;
+        public LambdaCommand MeasuresCommand
+        {
+            get
+            {
+                return measuresCommand ??
+                    (measuresCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("measures");
+                    },
+                    (obj) =>
+                    {
+                        var vm = parent.SelectedViewModel;
+                        if (vm.name == "measures") { return false; }
+                        return true;
+
+                    }));
+            }
+        }
         #endregion
     }
 }
