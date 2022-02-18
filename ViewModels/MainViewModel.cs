@@ -164,16 +164,16 @@ namespace recipe.ViewModels
                                 break;
 
                             case "peculiarities":
-                                vm = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                vm = ViewModels.Find(x => x.GetType() == typeof(PeculiaritiesViewModel));
                                 if (vm == null)
                                 {
-                                    ViewModels.Add(new KitchensViewModel(this));
-                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(KitchensViewModel));
+                                    ViewModels.Add(new PeculiaritiesViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(PeculiaritiesViewModel));
                                 }
                                 else
                                 {
-                                    var kvm = (KitchensViewModel)vm;
-                                    kvm.Kitchens = new ObservableCollection<Kitchen>(db.Kitchens.ToList());
+                                    var pvm = (PeculiaritiesViewModel)vm;
+                                    pvm.Peculiarities = new ObservableCollection<Peculiarity>(db.Peculiarities.ToList());
                                     SelectedViewModel = vm;
                                 }
                                 break;
