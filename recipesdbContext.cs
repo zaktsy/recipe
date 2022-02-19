@@ -156,7 +156,7 @@ namespace recipe
                     .HasColumnName("name");
 
                 entity.Property(e => e.Photo)
-                    .HasColumnType("image")
+                    .HasMaxLength(50)
                     .HasColumnName("photo");
             });
 

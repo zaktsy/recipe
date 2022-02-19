@@ -73,8 +73,6 @@ namespace recipe.ViewModels
                                 }
                                 else 
                                 {
-                                    OnPropertyChanged("SelectedUser");
-                                    OnPropertyChanged("Users");
                                     SelectedViewModel = vm;
                                     SelectedSideViewModel = svm;
                                 }
@@ -190,6 +188,26 @@ namespace recipe.ViewModels
                                     var mvm = (MeasuresViewModel)vm;
                                     mvm.Measures = new ObservableCollection<Measure>(db.Measures.ToList());
                                     SelectedViewModel = vm;
+                                }
+                                break;
+
+                            case "products":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(ProductViewModel));
+                                //svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new ProductViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(ProductViewModel));
+
+                                    //SideViewModels.Add(new UsersSideViewModel(this));
+                                    //SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                }
+                                else
+                                {
+                                    var pvm = (ProductViewModel)vm;
+                                    
+                                    SelectedViewModel = vm;
+                                    //SelectedSideViewModel = svm;
                                 }
                                 break;
                         }
