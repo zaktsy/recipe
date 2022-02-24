@@ -1,6 +1,7 @@
 ﻿using recipe.Infrastructure;
 using recipe.Infrastructure.dialogs.DialogService;
 using recipe.Infrastructure.dialogs.DialogYesNo;
+using recipe.Infrastructure.dialogs.EditProductDialog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,13 +38,13 @@ namespace recipe.ViewModels
         }
 
         #region commands
-        private LambdaCommand delMealCommand;
-        public LambdaCommand DelMealCommand
+        private LambdaCommand delProductCommand;
+        public LambdaCommand DelProductCommand
         {
             get
             {
-                return delMealCommand ??
-                    (delMealCommand = new LambdaCommand(obj =>
+                return delProductCommand ??
+                    (delProductCommand = new LambdaCommand(obj =>
                     {
                         DialogViewModelBase vm = new DialogYesNoViewModel("Удалить прием пищи?");
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
@@ -63,34 +64,35 @@ namespace recipe.ViewModels
             }
         }
 
-        //private LambdaCommand editMealCommand;
-        //public LambdaCommand EditMealCommand
-        //{
-        //    get
-        //    {
-        //        return editMealCommand ??
-        //            (editMealCommand = new LambdaCommand(obj =>
-        //            {
-        //                EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:");
-        //                DialogResult result = DialogService.OpenDialog(vm, obj as Window);
-        //                if (result == DialogResult.Yes)
-        //                {
-        //                    var name = vm.Name;
-        //                    var id = SelectedMeal.Id;
-        //                    Meal meal = (from c in db.Meals
-        //                                 where c.Id == id
-        //                                 select c).FirstOrDefault();
-        //                    meal.Name = name;
-        //                    db.SaveChanges();
-        //                    Meals.Remove(SelectedMeal);
-        //                    Meals.Add(meal);
-        //                    SelectedMeal = meal;
-        //                }
+        private LambdaCommand editProductCommand;
+        public LambdaCommand EditProductCommand
+        {
+            get
+            {
+                return editProductCommand ??
+                    (editProductCommand = new LambdaCommand(obj =>
+                    {
+                        EditProductDialogViewModel vm = new EditProductDialogViewModel("тест",SelectedProduct.Name,SelectedProduct.Description,SelectedProduct.Photo);
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var name = vm.Name;
+                            var description = vm.Description;
+                            var photo = vm.Photo;
+                            SelectedProduct.Name = name;
+                            SelectedProduct.Description = description;
+                            SelectedProduct.Photo = photo;
+                            db.SaveChanges();
+                            var product = SelectedProduct as Product;
+                            Products.Remove(SelectedProduct);
+                            Products.Add(product);
+                            SelectedProduct = product;
+                        }
 
-        //            },
-        //            (obj) => SelectedMeal != null));
-        //    }
-        //}
+                    },
+                    (obj) => SelectedProduct != null));
+            }
+        }
 
         //private LambdaCommand newMealCommand;
         //public LambdaCommand NewMealCommand

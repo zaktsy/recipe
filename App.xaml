@@ -6,6 +6,7 @@
              xmlns:viewmodels ="clr-namespace:recipe.ViewModels"
               xmlns:dialogYesNo="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo"
              xmlns:editNameDialog="clr-namespace:recipe.Infrastructure.dialogs.EditNameDialog"
+             xmlns:editProductDialog="clr-namespace:recipe.Infrastructure.dialogs.EditProductDialog"
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -62,6 +63,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type editNameDialog:EditNameDialogViewModel}">
                 <editNameDialog:EditNameDialogView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type editProductDialog:EditProductDialogViewModel}">
+                <editProductDialog:EditProductDialogView/>
             </DataTemplate>
             
         </ResourceDictionary>
