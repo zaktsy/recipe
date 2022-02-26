@@ -20,7 +20,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 <Button Content="Да" Style="{StaticResource SubmitButton}" HorizontalAlignment="Right" Margin="0,115,95,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding ProductYesCommand}"   
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-                <TextBox Style="{StaticResource InputRed}" Width="200" Height="25" Text="{Binding Name}" MaxLength="50"/>
+                <TextBox Style="{StaticResource InputRed}" Width="200" Height="25" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"/>
                 <Button Content="Нет" Style="{StaticResource DeleteButton}" HorizontalAlignment="Right" Margin="0,115,5,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding NoCommand}"  
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>

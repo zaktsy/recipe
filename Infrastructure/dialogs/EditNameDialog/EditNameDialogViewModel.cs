@@ -12,7 +12,7 @@ namespace recipe.Infrastructure.dialogs.EditNameDialog
     internal class EditNameDialogViewModel : DialogYesNoViewModel
     {
         private string name;
-        public string Name { get { return name; } set { name = value;} }
+        public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
 
         public EditNameDialogViewModel(string message) : base(message)
         {
@@ -29,7 +29,8 @@ namespace recipe.Infrastructure.dialogs.EditNameDialog
                     },
                     (obj) =>
                     {
-                        string st = Name.Replace(" ", "");
+                        string st = null;
+                        if (Name != null) { st = Name.Replace(" ", ""); }
                         return st != null && st.Length > 0;
                     }));
             }
