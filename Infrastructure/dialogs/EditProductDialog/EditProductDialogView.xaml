@@ -6,15 +6,15 @@
              xmlns:vm="clr-namespace:recipe.Infrastructure.dialogs.EditProductDialog"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type = vm:EditProductDialogViewModel}"
-             d:DesignHeight="450" d:DesignWidth="300">
-    <Border BorderBrush="{StaticResource RedColor}" BorderThickness="2" Height="405" Width="300">
+             d:DesignHeight="305" d:DesignWidth="300">
+    <Border BorderBrush="{StaticResource RedColor}" BorderThickness="2" Height="305" Width="300">
 
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="180"/>
-                <RowDefinition Height="100"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                 <Label Grid.Row="0" Content="Описание" Margin="10,0,0,0" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9" Height="40" />
                 <TextBox Grid.Row="1" Style="{StaticResource InputRed}" Width="250" Height="120" Text="{Binding Description}" VerticalAlignment="Top" VerticalContentAlignment="Top" TextWrapping="Wrap"/>
             </Grid>
-            <Grid Grid.Row="2">
+            <!--<Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition/>
@@ -43,11 +43,12 @@
                         <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,70,70"/>
                     </Image.Clip>
                 </Image>
-            </Grid>
-            <Button Grid.Row="3" Content="Да" Style="{StaticResource SubmitButton}" HorizontalAlignment="Right" Margin="0,15,95,10" VerticalAlignment="Top" Width="75"   
-        Command="{Binding YesCommand}"   
+                <Button Style="{StaticResource anotherButton}" Grid.Column="1" Content="Изменить картинку" Height="25" Width="150"/>
+            </Grid>-->
+            <Button Grid.Row="2" Content="Да" Style="{StaticResource SubmitButton}" HorizontalAlignment="Right" Margin="0,15,95,10" VerticalAlignment="Top" Width="75"   
+        Command="{Binding ProductYesCommand}"   
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-            <Button Grid.Row="3" Content="Нет" Style="{StaticResource DeleteButton}" HorizontalAlignment="Right" Margin="0,15,5,10" VerticalAlignment="Top" Width="75"   
+            <Button Grid.Row="2" Content="Нет" Style="{StaticResource DeleteButton}" HorizontalAlignment="Right" Margin="0,15,5,10" VerticalAlignment="Top" Width="75"   
         Command="{Binding NoCommand}"  
         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
         </Grid>

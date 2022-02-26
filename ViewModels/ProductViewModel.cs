@@ -46,7 +46,7 @@ namespace recipe.ViewModels
                 return delProductCommand ??
                     (delProductCommand = new LambdaCommand(obj =>
                     {
-                        DialogViewModelBase vm = new DialogYesNoViewModel("Удалить прием пищи?");
+                        DialogViewModelBase vm = new DialogYesNoViewModel("Удалить продукт?");
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {
@@ -72,16 +72,16 @@ namespace recipe.ViewModels
                 return editProductCommand ??
                     (editProductCommand = new LambdaCommand(obj =>
                     {
-                        EditProductDialogViewModel vm = new EditProductDialogViewModel("тест",SelectedProduct.Name,SelectedProduct.Description,SelectedProduct.Photo);
+                        EditProductDialogViewModel vm = new EditProductDialogViewModel("тест",SelectedProduct.Name,SelectedProduct.Description/*SelectedProduct.Photo*/);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {
                             var name = vm.Name;
                             var description = vm.Description;
-                            var photo = vm.Photo;
+                            //var photo = vm.Photo;
                             SelectedProduct.Name = name;
                             SelectedProduct.Description = description;
-                            SelectedProduct.Photo = photo;
+                            //SelectedProduct.Photo = photo;
                             db.SaveChanges();
                             var product = SelectedProduct as Product;
                             Products.Remove(SelectedProduct);
@@ -94,29 +94,31 @@ namespace recipe.ViewModels
             }
         }
 
-        //private LambdaCommand newMealCommand;
-        //public LambdaCommand NewMealCommand
-        //{
-        //    get
-        //    {
-        //        return newMealCommand ??
-        //            (newMealCommand = new LambdaCommand(obj =>
-        //            {
-        //                EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для нового приема пищи:");
-        //                DialogResult result = DialogService.OpenDialog(vm, obj as Window);
-        //                if (result == DialogResult.Yes)
-        //                {
-        //                    var name = vm.Name;
-        //                    Meal meal = new Meal();
-        //                    meal.Name = name;
-        //                    db.Meals.Add(meal);
-        //                    db.SaveChanges();
-        //                    Meals.Add(meal);
-        //                }
+        private LambdaCommand newProductCommand;
+        public LambdaCommand NewProductCommand
+        {
+            get
+            {
+                return newProductCommand ??
+                    (newProductCommand = new LambdaCommand(obj =>
+                    {
+                        EditProductDialogViewModel vm = new EditProductDialogViewModel("тест", "", ""/*SelectedProduct.Photo*/);
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var name = vm.Name;
+                            var desc = vm.Description;
+                            Product product = new Product();
+                            product.Name = name;
+                            product.Description = desc;
+                            db.Products.Add(product);
+                            db.SaveChanges();
+                            Products.Add(product);
+                        }
 
-        //            }));
-        //    }
-        //}
+                    }));
+            }
+        }
         #endregion
     }
 }

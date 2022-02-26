@@ -17,5 +17,22 @@ namespace recipe.Infrastructure.dialogs.EditNameDialog
         public EditNameDialogViewModel(string message) : base(message)
         {
         }
+        private LambdaCommand productyesCommand;
+        public LambdaCommand ProductYesCommand
+        {
+            get
+            {
+                return productyesCommand ??
+                    (productyesCommand = new LambdaCommand(obj =>
+                    {
+                        this.CloseDialogWithResult(obj as Window, DialogResult.Yes);
+                    },
+                    (obj) =>
+                    {
+                        string st = Name.Replace(" ", "");
+                        return st != null && st.Length > 0;
+                    }));
+            }
+        }
     }
 }

@@ -193,22 +193,19 @@ namespace recipe.ViewModels
 
                             case "products":
                                 vm = ViewModels.Find(x => x.GetType() == typeof(ProductViewModel));
-                                //svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
                                 if (vm == null)
                                 {
                                     ViewModels.Add(new ProductViewModel(this));
                                     SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(ProductViewModel));
 
-                                    //SideViewModels.Add(new UsersSideViewModel(this));
-                                    //SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
-                                }
+                                     }
                                 else
                                 {
                                     var pvm = (ProductViewModel)vm;
                                     
                                     SelectedViewModel = vm;
-                                    //SelectedSideViewModel = svm;
                                 }
+                                SelectedSideViewModel = null;
                                 break;
                         }
 
