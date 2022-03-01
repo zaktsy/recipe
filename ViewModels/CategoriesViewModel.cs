@@ -73,7 +73,7 @@ namespace recipe.ViewModels
                 return editCategoryCommand ??
                     (editCategoryCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:", SelectedCategory.Name);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {
@@ -103,7 +103,7 @@ namespace recipe.ViewModels
                 return newCategoryCommand ??
                     (newCategoryCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для новой категории:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для новой категории:","");
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {

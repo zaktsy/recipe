@@ -73,7 +73,7 @@ namespace recipe.ViewModels
                 return editMealCommand ??
                     (editMealCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:",SelectedMeal.Name);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {
@@ -103,7 +103,7 @@ namespace recipe.ViewModels
                 return newMealCommand ??
                     (newMealCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для нового приема пищи:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для нового приема пищи:","");
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {

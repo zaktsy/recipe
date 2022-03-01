@@ -73,7 +73,7 @@ namespace recipe.ViewModels
                 return editMeasureCommand ??
                     (editMeasureCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Новое имя:",SelectedMeasure.Name);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {
@@ -102,7 +102,7 @@ namespace recipe.ViewModels
                 return newMeasureCommand ??
                     (newMeasureCommand = new LambdaCommand(obj =>
                     {
-                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для новой меры измерения:");
+                        EditNameDialogViewModel vm = new EditNameDialogViewModel("Имя для новой меры измерения:","");
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
                         if (result == DialogResult.Yes)
                         {

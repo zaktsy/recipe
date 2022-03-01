@@ -14,8 +14,9 @@ namespace recipe.Infrastructure.dialogs.EditNameDialog
         private string name;
         public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
 
-        public EditNameDialogViewModel(string message) : base(message)
+        public EditNameDialogViewModel(string message, string name) : base(message)
         {
+            this.name = name;
         }
         private LambdaCommand productyesCommand;
         public LambdaCommand ProductYesCommand
