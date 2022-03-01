@@ -87,6 +87,7 @@ namespace recipe.ViewModels
                             Meals.Remove(SelectedMeal);
                             Meals.Add(meal);
                             SelectedMeal = meal;
+                            parent.IsRecipesInfoChanched = true;
                         }
 
                     },

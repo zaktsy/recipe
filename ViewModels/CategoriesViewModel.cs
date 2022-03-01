@@ -87,6 +87,7 @@ namespace recipe.ViewModels
                             Categories.Remove(SelectedCategory);
                             Categories.Add(cat);
                             SelectedCategory = cat;
+                            parent.IsRecipesInfoChanched = true;
                         }
 
                     },

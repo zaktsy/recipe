@@ -25,7 +25,11 @@ namespace recipe.ViewModels
             this.parent = parent;
             Recipes = new ObservableCollection<Recipe>(db.Recipes.Include(u => u.Products).ToList());
             name = "recipes";
+            var Cat = (from cat in db.Categories where cat.Id == Recipes[0].Categoryid select cat).FirstOrDefault();
+            if (Cat != null) { Category = Cat.Name;}
         }
 
+        private string category;
+        public string Category { get { return category; } set { category = value; OnPropertyChanged("Category"); } }
     }
 }

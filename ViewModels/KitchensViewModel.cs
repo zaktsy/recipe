@@ -87,6 +87,7 @@ namespace recipe.ViewModels
                             Kitchens.Remove(SelectedKitchen);
                             Kitchens.Add(kitchen);
                             SelectedKitchen = kitchen;
+                            parent.IsRecipesInfoChanched = true;
                         }
 
                     },

@@ -87,6 +87,7 @@ namespace recipe.ViewModels
                             Peculiarities.Remove(SelectedPeculiarity);
                             Peculiarities.Add(peculiarity);
                             SelectedPeculiarity = peculiarity;
+                            parent.IsRecipesInfoChanched = true;
                         }
 
                     },

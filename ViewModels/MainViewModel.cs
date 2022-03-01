@@ -30,6 +30,8 @@ namespace recipe.ViewModels
         private List<BaseViewModel> sideViewModels = new List<BaseViewModel>();
         public List<BaseViewModel> SideViewModels { get { return sideViewModels; } set { sideViewModels = value; OnPropertyChanged("SideViewModels"); } }
 
+        private bool isRecipesInfoChanched;
+        public bool IsRecipesInfoChanched { get { return isRecipesInfoChanched; } set { isRecipesInfoChanched = value; OnPropertyChanged(nameof(IsRecipesInfoChanched)); } }
 
         public MainViewModel(User user)
         {
@@ -73,6 +75,11 @@ namespace recipe.ViewModels
                                 }
                                 else
                                 {
+                                    if (IsRecipesInfoChanched)
+                                    {
+                                        vm = new RecipesViewModel(this);
+                                        IsRecipesInfoChanched = false;
+                                    }
                                     SelectedViewModel = vm;
                                     SelectedSideViewModel = svm;
                                 }
