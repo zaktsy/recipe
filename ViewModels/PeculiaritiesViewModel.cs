@@ -59,6 +59,7 @@ namespace recipe.ViewModels
                             db.SaveChanges();
                             Peculiarities.Remove(SelectedPeculiarity);
                             SelectedPeculiarity = null;
+                            parent.IsRecipesInfoChanched = true;
                         }
                     },
                     (obj) => SelectedPeculiarity != null));

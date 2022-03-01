@@ -59,6 +59,7 @@ namespace recipe.ViewModels
                             db.SaveChanges();
                             Categories.Remove(SelectedCategory);
                             SelectedCategory = null;
+                            parent.IsRecipesInfoChanched = true;
                         }
                     },
                     (obj) => SelectedCategory != null));

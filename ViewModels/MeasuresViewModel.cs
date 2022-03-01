@@ -59,6 +59,7 @@ namespace recipe.ViewModels
                             db.SaveChanges();
                             Measures.Remove(SelectedMeasure);
                             SelectedMeasure = null;
+                            parent.IsRecipesInfoChanched = true;
                         }
                     },
                     (obj) => SelectedMeasure != null));

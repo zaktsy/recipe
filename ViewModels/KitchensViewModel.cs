@@ -59,6 +59,7 @@ namespace recipe.ViewModels
                             db.SaveChanges();
                             Kitchens.Remove(SelectedKitchen);
                             SelectedKitchen = null;
+                            parent.IsRecipesInfoChanched = true;
                         }
                     },
                     (obj) => SelectedKitchen != null));

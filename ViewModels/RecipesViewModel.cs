@@ -23,13 +23,16 @@ namespace recipe.ViewModels
         {
             db = new recipesdbContext();
             this.parent = parent;
+
             Recipes = new ObservableCollection<Recipe>(db.Recipes.Include(u => u.Products).ToList());
+            foreach(var recipe in Recipes)
+            {
+                recipe.Meal = (from meal in db.Meals where meal.Id == recipe.Mealid select meal).FirstOrDefault();
+                recipe.Category = (from category in db.Categories where category.Id == recipe.Categoryid select category).FirstOrDefault();
+                recipe.Kitchen = (from kitchen in db.Kitchens where kitchen.Id == recipe.Kitchenid select kitchen).FirstOrDefault();
+            }
             name = "recipes";
-            var Cat = (from cat in db.Categories where cat.Id == Recipes[0].Categoryid select cat).FirstOrDefault();
-            if (Cat != null) { Category = Cat.Name;}
         }
 
-        private string category;
-        public string Category { get { return category; } set { category = value; OnPropertyChanged("Category"); } }
     }
 }
