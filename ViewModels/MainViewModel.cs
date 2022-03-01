@@ -62,19 +62,19 @@ namespace recipe.ViewModels
                         {
                             case "recipes":
                                 vm = ViewModels.Find(x => x.GetType() == typeof(RecipesViewModel));
-                                //svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                svm = SideViewModels.Find(x => x.GetType() == typeof(RecipesSideViewModel));
                                 if (vm == null)
                                 {
                                     ViewModels.Add(new RecipesViewModel(this));
                                     SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(RecipesViewModel));
 
-                                    //SideViewModels.Add(new UsersSideViewModel(this));
-                                    //SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                    SideViewModels.Add(new RecipesSideViewModel(this));
+                                    SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(RecipesSideViewModel));
                                 }
                                 else
                                 {
                                     SelectedViewModel = vm;
-                                    //SelectedSideViewModel = svm;
+                                    SelectedSideViewModel = svm;
                                 }
                                 break;
 

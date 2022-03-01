@@ -23,8 +23,6 @@
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"
              Margin="0,0,25,0" Padding="3" Style="{StaticResource InputRed}" Height="40" Width="250" HorizontalAlignment="Right"/>
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1">
-            <TextBlock Text="{Binding FirstProd.Name}" Style="{StaticResource zag}"/>
-            <TextBlock Text="Название" Style="{StaticResource zag}"/>
         </StackPanel>
         <ListBox ItemContainerStyle="{StaticResource ListboxMainItem}"  
                  Style="{StaticResource ListboxMain}" 
@@ -40,8 +38,9 @@
                  VirtualizingPanel.ScrollUnit="Pixel">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Margin="4" MinWidth="150"/>
+                    <StackPanel Orientation="Vertical" >
+                        <TextBlock Text="{Binding Name}" Margin="4" Width="550"  FontSize="25" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding Description}" Margin="4" Width="550" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
