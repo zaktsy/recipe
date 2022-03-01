@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace recipe.ViewModels
 {
@@ -26,8 +23,9 @@ namespace recipe.ViewModels
         {
             db = new recipesdbContext();
             this.parent = parent;
-            Recipes = new ObservableCollection<Recipe>((from recipe in db.Recipes select recipe).ToList());
+            Recipes = new ObservableCollection<Recipe>(db.Recipes.Include(u => u.Products).ToList());
             name = "recipes";
         }
+
     }
 }

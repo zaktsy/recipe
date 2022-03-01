@@ -22,7 +22,6 @@ namespace recipe
         public int? Fat { get; set; }
         public int? Carbohydrates { get; set; }
         public string? Description { get; set; }
-        public byte[]? Photo { get; set; }
 
         public virtual Category? Category { get; set; }
         public virtual Kitchen? Kitchen { get; set; }

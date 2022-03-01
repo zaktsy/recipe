@@ -180,9 +180,6 @@ namespace recipe
                     .HasMaxLength(50)
                     .HasColumnName("name");
 
-                entity.Property(e => e.Photo)
-                    .HasColumnType("image")
-                    .HasColumnName("photo");
 
                 entity.Property(e => e.Proteins).HasColumnName("proteins");
 
@@ -234,9 +231,6 @@ namespace recipe
 
                 entity.Property(e => e.Description).HasColumnName("description");
 
-                entity.Property(e => e.Photo)
-                    .HasColumnType("image")
-                    .HasColumnName("photo");
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.RecipeSteps)
