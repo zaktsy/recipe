@@ -60,6 +60,24 @@ namespace recipe.ViewModels
                         var svm = SelectedSideViewModel;
                         switch (obj)
                         {
+                            case "recipes":
+                                vm = ViewModels.Find(x => x.GetType() == typeof(RecipesViewModel));
+                                //svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                if (vm == null)
+                                {
+                                    ViewModels.Add(new RecipesViewModel(this));
+                                    SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(RecipesViewModel));
+
+                                    //SideViewModels.Add(new UsersSideViewModel(this));
+                                    //SelectedSideViewModel = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
+                                }
+                                else
+                                {
+                                    SelectedViewModel = vm;
+                                    //SelectedSideViewModel = svm;
+                                }
+                                break;
+
                             case "users":
                                 vm = ViewModels.Find(x => x.GetType() == typeof(UsersViewModel));
                                 svm = SideViewModels.Find(x => x.GetType() == typeof(UsersSideViewModel));
