@@ -47,16 +47,20 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Command="{Binding NewProdCommand}" VerticalAlignment="Bottom" Margin="40" Grid.Column="2" Grid.Row="2" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Добавить"/>
+        <Button Command="{Binding DelProdCommand}" VerticalAlignment="Bottom" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="2" Grid.Row="2" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
+
         <TextBlock Grid.Row="0" Grid.Column="2" Text="Продукты:" FontSize="25" Margin="10" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="{StaticResource GreenColor}"/>
         <ListBox ItemContainerStyle="{StaticResource ListboxMainItem}"   
                  Style="{StaticResource ListboxMain}" 
-                 SelectionChanged="ListBox_SelectionChanged"
                  Grid.Column="2" Grid.Row="2" 
                  ItemsSource="{Binding Products}" 
                  d:ItemsSource="{d:SampleData ItemCount=5}" 
                  Background="Transparent"
                  FontSize="18"
                  Width="220"
+                 Height="250"
+                 VerticalAlignment="Top"
                  HorizontalAlignment="Left"
                  VirtualizingPanel.ScrollUnit="Pixel">
             <ListBox.ItemTemplate>
@@ -67,13 +71,13 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Grid.Row="3" Grid.ColumnSpan="2"  Width="500" HorizontalAlignment="Right">
+        <Grid Grid.Row="3" Grid.ColumnSpan="2"  Width="500" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding AdminUserCommand}" Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Добавить"/>
+            <Button Command="{Binding AdminUserCommand}"  Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Добавить"/>
             <Button Command="{Binding EditRecipeCommand}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Посмотреть"/>
             <Button Command="{Binding DelRecipeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="2" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
         </Grid>
