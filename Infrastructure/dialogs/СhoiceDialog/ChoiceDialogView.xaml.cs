@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace recipe.Infrastructure.dialogs.EditProductDialog
+namespace recipe.Infrastructure.dialogs.СhoiceDialog
 {
     /// <summary>
-    /// Логика взаимодействия для EditProductDialogView.xaml
+    /// Логика взаимодействия для ChoiceDialogView.xaml
     /// </summary>
-    public partial class EditProductDialogView : ContentControl
+    public partial class ChoiceDialogView : ContentControl
     {
-        public EditProductDialogView()
+        public ChoiceDialogView()
         {
             InitializeComponent();
         }
@@ -28,6 +28,11 @@ namespace recipe.Infrastructure.dialogs.EditProductDialog
         {
             var listBox = sender as ListBox;
             listBox.ScrollIntoView(listBox.SelectedItem);
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = "0123456789".IndexOf(e.Text) < 0;
         }
     }
 }

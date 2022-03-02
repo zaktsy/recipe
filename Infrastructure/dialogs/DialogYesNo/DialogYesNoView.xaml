@@ -6,7 +6,8 @@
                 xmlns:vm="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo" xmlns:in="http://schemas.microsoft.com/xaml/behaviors" xmlns:b="clr-namespace:recipe.Infrastructure.behaviors"
                 d:DataContext="{d:DesignInstance Type = vm:DialogYesNoViewModel}"
                 mc:Ignorable="d"  
-             d:DesignHeight="100" d:DesignWidth="300">
+             d:DesignHeight="100" d:DesignWidth="300"
+             >
     <Border BorderBrush="{StaticResource RedColor}" BorderThickness="2">
 
         <Grid >

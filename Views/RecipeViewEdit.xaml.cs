@@ -25,10 +25,5 @@ namespace recipe.Views
             InitializeComponent();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var listBox = sender as ListBox;
-            listBox.SelectedIndex = -1;
-        }
     }
 }

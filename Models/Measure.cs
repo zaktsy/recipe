@@ -8,6 +8,7 @@ namespace recipe
         public Measure()
         {
             Fridges = new HashSet<Fridge>();
+            ProductRecipes = new HashSet<ProductRecipe>();
             ShoppingLists = new HashSet<ShoppingList>();
         }
 
@@ -15,6 +16,7 @@ namespace recipe
         public string? Name { get; set; }
 
         public virtual ICollection<Fridge> Fridges { get; set; }
+        public virtual ICollection<ProductRecipe> ProductRecipes { get; set; }
         public virtual ICollection<ShoppingList> ShoppingLists { get; set; }
     }
 }

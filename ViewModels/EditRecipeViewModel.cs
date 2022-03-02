@@ -1,9 +1,14 @@
-﻿using System;
+﻿using recipe.Infrastructure;
+using recipe.Infrastructure.dialogs.DialogService;
+using recipe.Infrastructure.dialogs.DialogYesNo;
+using recipe.Infrastructure.dialogs.СhoiceDialog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace recipe.ViewModels
 {
@@ -19,8 +24,11 @@ namespace recipe.ViewModels
         private ObservableCollection<RecipeStep> recipesSteps;
         public ObservableCollection<RecipeStep> RecipesSteps { get { return recipesSteps; } set { recipesSteps = value; OnPropertyChanged("RecipesSteps"); } }
 
-        private ObservableCollection<Product> products;
-        public ObservableCollection<Product> Products { get { return products; } set { products = value; OnPropertyChanged(nameof(Products)); } }
+        private ObservableCollection<ProductRecipe> products;
+        public ObservableCollection<ProductRecipe> Products { get { return products; } set { products = value; OnPropertyChanged(nameof(Products)); } }
+
+        private ProductRecipe selectedProduct;
+        public ProductRecipe SelectedProduct { get { return selectedProduct; } set { selectedProduct = value; OnPropertyChanged("SelectedProduct"); } }
 
         public EditRecipeViewModel(MainViewModel parent)
         {
@@ -31,7 +39,94 @@ namespace recipe.ViewModels
 
             RecipesSteps = new ObservableCollection<RecipeStep>((from steps in db.RecipeSteps where steps.Recipeid == CurrentRecipe.Id select steps));
 
-            Products = new ObservableCollection<Product>(CurrentRecipe.Products);
+            Products = new ObservableCollection<ProductRecipe>((from steps in db.ProductRecipes where steps.Recipeid == CurrentRecipe.Id select steps));
+
+            foreach(var prod in Products)
+            {
+                prod.Product = (from pr in db.Products where pr.Id == prod.Productid select pr).FirstOrDefault();
+                prod.Mesure = (from mr in db.Measures where mr.Id == prod.Mesureid select mr).FirstOrDefault();
+            }      
         }
+
+        #region commands
+        private LambdaCommand delProdCommand;
+        public LambdaCommand DelProdCommand
+        {
+            get
+            {
+                return delProdCommand ??
+                    (delProdCommand = new LambdaCommand(obj =>
+                    {
+                        DialogViewModelBase vm = new DialogYesNoViewModel("Удалить продукт из рецепта?");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            db.ProductRecipes.Remove(SelectedProduct);
+                            Products.Remove(SelectedProduct);
+                            db.SaveChanges();
+                        }
+                    },
+                    (obj) => SelectedProduct != null));
+            }
+        }
+
+        //private LambdaCommand editRecipeCommand;
+        //public LambdaCommand EditRecipeCommand
+        //{
+        //    get
+        //    {
+        //        return editRecipeCommand ??
+        //            (editRecipeCommand = new LambdaCommand(obj =>
+        //            {
+
+        //                parent.ChangeViewModel.Execute("editRecipe");
+
+        //            },
+        //            (obj) => SelectedRecipe != null));
+        //    }
+        //}
+
+        private LambdaCommand newProdCommand;
+        public LambdaCommand NewProdCommand
+        {
+            get
+            {
+                return newProdCommand ??
+                    (newProdCommand = new LambdaCommand(obj =>
+                    {
+                        ChoiceDialogViewModel vm = new ChoiceDialogViewModel("Выберите продукт", "product");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var prod = (Product)vm.SelectedItem;
+                            bool check = true;
+                            foreach(var pr in Products)
+                            {
+                               if (pr.Product.Name == prod.Name) { check = false; break; }
+                            }
+                            if (check)
+                            {
+                                
+                                var rp = new ProductRecipe();
+                                rp.Recipeid = CurrentRecipe.Id;
+                                rp.Mesureid = vm.SelectedMeasure.Id;
+                                rp.Productid = prod.Id;
+                                rp.Amount = Convert.ToInt32(vm.Amount);
+                                Products.Add(rp);
+                                db.ProductRecipes.Add(rp);
+                                db.SaveChanges();
+                                foreach (var prodd in Products)
+                                {
+                                    prodd.Product = (from pr in db.Products where pr.Id == prodd.Productid select pr).FirstOrDefault();
+                                    prodd.Mesure = (from mr in db.Measures where mr.Id == prodd.Mesureid select mr).FirstOrDefault();
+                                }
+                            }
+                            
+                        }
+
+                    }));
+            }
+        }
+        #endregion
     }
 }

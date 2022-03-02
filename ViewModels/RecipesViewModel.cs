@@ -28,13 +28,15 @@ namespace recipe.ViewModels
             db = new recipesdbContext();
             this.parent = parent;
 
-            Recipes = new ObservableCollection<Recipe>(db.Recipes.Include(u => u.Products).ToList());
+            Recipes = new ObservableCollection<Recipe>(db.Recipes.ToList());
             foreach(var recipe in Recipes)
             {
                 recipe.Meal = (from meal in db.Meals where meal.Id == recipe.Mealid select meal).FirstOrDefault();
                 recipe.Category = (from category in db.Categories where category.Id == recipe.Categoryid select category).FirstOrDefault();
                 recipe.Kitchen = (from kitchen in db.Kitchens where kitchen.Id == recipe.Kitchenid select kitchen).FirstOrDefault();
+                recipe.ProductRecipes = (from step in db.ProductRecipes where step.Recipeid == recipe.Id select step).ToList();
             }
+            
             name = "recipes";
         }
 

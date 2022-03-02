@@ -23,6 +23,7 @@ namespace recipe
         public virtual DbSet<Measure> Measures { get; set; } = null!;
         public virtual DbSet<Peculiarity> Peculiarities { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<ProductRecipe> ProductRecipes { get; set; } = null!;
         public virtual DbSet<Recipe> Recipes { get; set; } = null!;
         public virtual DbSet<RecipeStep> RecipeSteps { get; set; } = null!;
         public virtual DbSet<ShoppingList> ShoppingLists { get; set; } = null!;
@@ -32,6 +33,7 @@ namespace recipe
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=LAPTOP-16JKD4HS\\SQLEXPRESS;Initial Catalog=recipesdb;Integrated Security=True;");
             }
         }
@@ -147,9 +149,7 @@ namespace recipe
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(50)
-                    .HasColumnName("description");
+                entity.Property(e => e.Description).HasColumnName("description");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
@@ -158,6 +158,36 @@ namespace recipe
                 entity.Property(e => e.Photo)
                     .HasMaxLength(50)
                     .HasColumnName("photo");
+            });
+
+            modelBuilder.Entity<ProductRecipe>(entity =>
+            {
+                entity.HasKey(e => new { e.Recipeid, e.Productid });
+
+                entity.ToTable("ProductRecipe");
+
+                entity.Property(e => e.Recipeid).HasColumnName("recipeid");
+
+                entity.Property(e => e.Productid).HasColumnName("productid");
+
+                entity.Property(e => e.Amount).HasColumnName("amount");
+
+                entity.Property(e => e.Mesureid).HasColumnName("mesureid");
+
+                entity.HasOne(d => d.Mesure)
+                    .WithMany(p => p.ProductRecipes)
+                    .HasForeignKey(d => d.Mesureid)
+                    .HasConstraintName("FK_ProductRecipe_Measures");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductRecipes)
+                    .HasForeignKey(d => d.Productid)
+                    .HasConstraintName("FK_ProductRecipe_Products");
+
+                entity.HasOne(d => d.Recipe)
+                    .WithMany(p => p.ProductRecipes)
+                    .HasForeignKey(d => d.Recipeid)
+                    .HasConstraintName("FK_ProductRecipe_Recipes");
             });
 
             modelBuilder.Entity<Recipe>(entity =>
@@ -180,7 +210,6 @@ namespace recipe
                     .HasMaxLength(50)
                     .HasColumnName("name");
 
-
                 entity.Property(e => e.Proteins).HasColumnName("proteins");
 
                 entity.HasOne(d => d.Category)
@@ -200,23 +229,6 @@ namespace recipe
                     .HasForeignKey(d => d.Mealid)
                     .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Recipes_Meals");
-
-                entity.HasMany(d => d.Products)
-                    .WithMany(p => p.Recipes)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "ProductRecipe",
-                        l => l.HasOne<Product>().WithMany().HasForeignKey("Productid").HasConstraintName("FK_ProductRecipe_Products"),
-                        r => r.HasOne<Recipe>().WithMany().HasForeignKey("Recipeid").HasConstraintName("FK_ProductRecipe_Recipes"),
-                        j =>
-                        {
-                            j.HasKey("Recipeid", "Productid");
-
-                            j.ToTable("ProductRecipe");
-
-                            j.IndexerProperty<int>("Recipeid").HasColumnName("recipeid");
-
-                            j.IndexerProperty<int>("Productid").HasColumnName("productid");
-                        });
             });
 
             modelBuilder.Entity<RecipeStep>(entity =>
@@ -230,7 +242,6 @@ namespace recipe
                 entity.Property(e => e.Stepnumber).HasColumnName("stepnumber");
 
                 entity.Property(e => e.Description).HasColumnName("description");
-
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.RecipeSteps)

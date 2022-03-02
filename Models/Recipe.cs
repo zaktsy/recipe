@@ -7,9 +7,9 @@ namespace recipe
     {
         public Recipe()
         {
+            ProductRecipes = new HashSet<ProductRecipe>();
             RecipeSteps = new HashSet<RecipeStep>();
             Peculiarities = new HashSet<Peculiarity>();
-            Products = new HashSet<Product>();
             Users = new HashSet<User>();
         }
 
@@ -26,10 +26,10 @@ namespace recipe
         public virtual Category? Category { get; set; }
         public virtual Kitchen? Kitchen { get; set; }
         public virtual Meal? Meal { get; set; }
+        public virtual ICollection<ProductRecipe> ProductRecipes { get; set; }
         public virtual ICollection<RecipeStep> RecipeSteps { get; set; }
 
         public virtual ICollection<Peculiarity> Peculiarities { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace recipe
         public Product()
         {
             Fridges = new HashSet<Fridge>();
+            ProductRecipes = new HashSet<ProductRecipe>();
             ShoppingLists = new HashSet<ShoppingList>();
-            Recipes = new HashSet<Recipe>();
         }
 
         public int Id { get; set; }
@@ -18,8 +18,7 @@ namespace recipe
         public string? Photo { get; set; }
 
         public virtual ICollection<Fridge> Fridges { get; set; }
+        public virtual ICollection<ProductRecipe> ProductRecipes { get; set; }
         public virtual ICollection<ShoppingList> ShoppingLists { get; set; }
-
-        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

@@ -4,9 +4,11 @@
              xmlns:local="clr-namespace:recipe"
              xmlns:views="clr-namespace:recipe.Views"
              xmlns:viewmodels ="clr-namespace:recipe.ViewModels"
-              xmlns:dialogYesNo="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo"
+             xmlns:dialogYesNo="clr-namespace:recipe.Infrastructure.dialogs.DialogYesNo"
              xmlns:editNameDialog="clr-namespace:recipe.Infrastructure.dialogs.EditNameDialog"
              xmlns:editProductDialog="clr-namespace:recipe.Infrastructure.dialogs.EditProductDialog"
+             xmlns:choiceDialog="clr-namespace:recipe.Infrastructure.dialogs.СhoiceDialog"
+
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
@@ -15,12 +17,13 @@
 
                 <ResourceDictionary Source="Infrastructure\styles\theme.xaml"/>
 
+
                 <ResourceDictionary Source="Infrastructure\styles\animations.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
             <DataTemplate DataType="{x:Type viewmodels:HelloViewModel}">
                 <views:HelloView/>
             </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewmodels:UsersViewModel}">
                 <views:UsersView/>
             </DataTemplate>
@@ -66,7 +69,7 @@
             <DataTemplate DataType="{x:Type viewmodels:EditRecipeViewModel}">
                 <views:RecipeViewEdit/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>
             </DataTemplate>
@@ -76,9 +79,9 @@
             <DataTemplate DataType="{x:Type editProductDialog:EditProductDialogViewModel}">
                 <editProductDialog:EditProductDialogView/>
             </DataTemplate>
-            
+            <DataTemplate DataType="{x:Type choiceDialog:ChoiceDialogViewModel}">
+                <choiceDialog:ChoiceDialogView/>
+            </DataTemplate>
         </ResourceDictionary>
-
-        
     </Application.Resources>
 </Application>
