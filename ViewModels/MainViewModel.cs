@@ -223,7 +223,7 @@ namespace recipe.ViewModels
                                     ViewModels.Add(new ProductViewModel(this));
                                     SelectedViewModel = ViewModels.Find(x => x.GetType() == typeof(ProductViewModel));
 
-                                     }
+                                }
                                 else
                                 {
                                     var pvm = (ProductViewModel)vm;
@@ -231,6 +231,9 @@ namespace recipe.ViewModels
                                     SelectedViewModel = vm;
                                 }
                                 SelectedSideViewModel = null;
+                                break;
+                            case "editRecipe":
+                                
                                 break;
                         }
 

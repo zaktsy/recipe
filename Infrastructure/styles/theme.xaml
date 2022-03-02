@@ -506,7 +506,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Canvas Height="18">
-                        <Polygon Fill="LightBlue" Points="3,15 15,15 9,3"></Polygon>
+                        <Polygon Fill="{StaticResource RedColor}" Opacity="0.8" Points="3,15 15,15 9,3"></Polygon>
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
@@ -519,7 +519,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Canvas Height="18">
-                        <Polygon Fill="LightBlue" Points="3,3 9,15 15,3"></Polygon>
+                        <Polygon Fill="{StaticResource RedColor}" Opacity="0.8" Points="3,3 9,15 15,3"></Polygon>
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
@@ -545,7 +545,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle Fill="LightBlue" Margin="2"></Rectangle>
+                    <Rectangle Fill="{StaticResource RedColor}" Opacity="0.8" Margin="2"></Rectangle>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
