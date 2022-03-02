@@ -233,7 +233,8 @@ namespace recipe.ViewModels
                                 SelectedSideViewModel = null;
                                 break;
                             case "editRecipe":
-                                
+                                SelectedViewModel = new EditRecipeViewModel(this);
+                                SelectedSideViewModel = null;
                                 break;
                         }
 

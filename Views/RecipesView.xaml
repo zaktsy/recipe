@@ -63,7 +63,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding AdminUserCommand}" Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Добавить"/>
-            <Button Command="{Binding EditUserCommand}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Посмотреть"/>
+            <Button Command="{Binding EditRecipeCommand}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Посмотреть"/>
             <Button Command="{Binding DelRecipeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="2" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
         </Grid>
     </Grid>
