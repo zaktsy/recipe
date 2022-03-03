@@ -1,6 +1,7 @@
 ﻿using recipe.Infrastructure;
 using recipe.Infrastructure.dialogs.DialogService;
 using recipe.Infrastructure.dialogs.DialogYesNo;
+using recipe.Infrastructure.dialogs.RecipeStepEditDialog;
 using recipe.Infrastructure.dialogs.СhoiceDialog;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,9 @@ namespace recipe.ViewModels
 
         private ObservableCollection<RecipeStep> recipesSteps;
         public ObservableCollection<RecipeStep> RecipesSteps { get { return recipesSteps; } set { recipesSteps = value; OnPropertyChanged("RecipesSteps"); } }
+
+        private RecipeStep selectedStep;
+        public RecipeStep SelectedStep { get { return selectedStep; } set { selectedStep = value;OnPropertyChanged("SelectedStep"); } }
 
         private ObservableCollection<ProductRecipe> products;
         public ObservableCollection<ProductRecipe> Products { get { return products; } set { products = value; OnPropertyChanged(nameof(Products)); } }
@@ -70,21 +74,66 @@ namespace recipe.ViewModels
             }
         }
 
-        //private LambdaCommand editRecipeCommand;
-        //public LambdaCommand EditRecipeCommand
-        //{
-        //    get
-        //    {
-        //        return editRecipeCommand ??
-        //            (editRecipeCommand = new LambdaCommand(obj =>
-        //            {
+        private LambdaCommand goBackCommand;
+        public LambdaCommand GoBackCommand
+        {
+            get
+            {
+                return goBackCommand ??
+                    (goBackCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("recipes");
+                    }));
+            }
+        }
 
-        //                parent.ChangeViewModel.Execute("editRecipe");
+        private LambdaCommand editRecipeCommand;
+        public LambdaCommand EditRecipeCommand
+        {
+            get
+            {
+                return editRecipeCommand ??
+                    (editRecipeCommand = new LambdaCommand(obj =>
+                    {
+                        RecipeStepEditDialogViewModel vm = new RecipeStepEditDialogViewModel("test", SelectedStep.Stepnumber.ToString(), SelectedStep.Description, RecipesSteps.Count);
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            foreach (var stepp in RecipesSteps)
+                            {
+                                db.RecipeSteps.Remove(stepp);
+                            }
+                            db.SaveChanges();
+                            int newStepNumber = Convert.ToInt32(vm.Name);
+                            int currentStepNumber = SelectedStep.Stepnumber;
+                            var step = (from r in db.RecipeSteps where r.Recipeid == CurrentRecipe.Id && r.Stepnumber == currentStepNumber select r).FirstOrDefault();
+                            if (newStepNumber > currentStepNumber)
+                            {
+                                for (int i = currentStepNumber; i < newStepNumber; i++)
+                                {
+                                    RecipesSteps[i].Stepnumber--;
+                                }
+                            }
+                            else if (newStepNumber < currentStepNumber)
+                            {
+                                for (int i = currentStepNumber-1; i >= newStepNumber; i--)
+                                {
+                                    RecipesSteps[i-1].Stepnumber++;
+                                }
 
-        //            },
-        //            (obj) => SelectedRecipe != null));
-        //    }
-        //}
+                            }
+                            SelectedStep.Description = vm.Description;
+                            SelectedStep.Stepnumber = newStepNumber;
+
+                            db.RecipeSteps.AddRange(RecipesSteps);
+                            db.SaveChanges();
+                            RecipesSteps = new ObservableCollection<RecipeStep>((from steps in db.RecipeSteps where steps.Recipeid == CurrentRecipe.Id select steps));
+
+                        }
+                    },
+                    (obj) => SelectedStep != null));
+            }
+        }
 
         private LambdaCommand newProdCommand;
         public LambdaCommand NewProdCommand

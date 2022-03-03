@@ -57,8 +57,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding AdminUserCommand}" Grid.Column="0" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Администрация"/>
-            <Button Command="{Binding EditUserCommand}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Редактировать"/>
+            <Button Command="{Binding AdminUserCommand}" Grid.Column="1" Style="{StaticResource SubmitButton}" Height="25" Width="115" Content="Администрация"/>
             <Button Command="{Binding DelUserCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" Grid.Column="2" Style="{StaticResource DeleteButton}" Height="25" Width="115" Content="Удалить"/>
         </Grid>
     </Grid>

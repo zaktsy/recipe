@@ -8,6 +8,7 @@
              xmlns:editNameDialog="clr-namespace:recipe.Infrastructure.dialogs.EditNameDialog"
              xmlns:editProductDialog="clr-namespace:recipe.Infrastructure.dialogs.EditProductDialog"
              xmlns:choiceDialog="clr-namespace:recipe.Infrastructure.dialogs.СhoiceDialog"
+             xmlns:editRecipeStep="clr-namespace:recipe.Infrastructure.dialogs.RecipeStepEditDialog"
 
              ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
@@ -81,6 +82,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type choiceDialog:ChoiceDialogViewModel}">
                 <choiceDialog:ChoiceDialogView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type editRecipeStep:RecipeStepEditDialogViewModel}">
+                <editRecipeStep:RecipeStepEditDialogView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
