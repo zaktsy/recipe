@@ -135,6 +135,30 @@ namespace recipe.ViewModels
             }
         }
 
+        private LambdaCommand newRecipeCommand;
+        public LambdaCommand NewRecipeCommand
+        {
+            get
+            {
+                return newRecipeCommand ??
+                    (newRecipeCommand = new LambdaCommand(obj =>
+                    {
+                        RecipeStepNewDialogViewModel vm = new RecipeStepNewDialogViewModel("test", RecipesSteps.Count);
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            var rs = new RecipeStep();
+                            rs.Recipeid = CurrentRecipe.Id;
+                            rs.Description = vm.Description;
+                            rs.Stepnumber = RecipesSteps.Count + 1;
+                            db.RecipeSteps.Add(rs);
+                            db.SaveChanges();
+                            RecipesSteps.Add(rs);
+                        }
+                    }));
+            }
+        }
+
         private LambdaCommand newProdCommand;
         public LambdaCommand NewProdCommand
         {
