@@ -64,7 +64,7 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Количество:" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9" Height="40" HorizontalAlignment="Center"/>
                 <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InputRed}" Width="100" Height="25" PreviewTextInput="TextBox_PreviewTextInput"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Мера:" FontSize="20" Foreground="{StaticResource DarkColor}" Opacity="0.9" Height="40" HorizontalAlignment="Center"/>
-                <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Height="40" BorderBrush="{StaticResource RedColor}" BorderThickness="3" ItemsSource="{Binding Measures}" SelectedItem="{Binding SelectedMeasure}">
+                <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" Height="40" Background="Transparent" BorderBrush="{StaticResource RedColor}" BorderThickness="3" ItemsSource="{Binding Measures}" SelectedItem="{Binding SelectedMeasure}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

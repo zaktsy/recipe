@@ -77,7 +77,10 @@ namespace recipe.ViewModels
                                 {
                                     if (IsRecipesInfoChanched)
                                     {
+                                        ViewModels.Remove(vm);
                                         vm = new RecipesViewModel(this);
+                                        ViewModels.Add(vm);
+                                        
                                         IsRecipesInfoChanched = false;
                                     }
                                     SelectedViewModel = vm;
@@ -235,6 +238,16 @@ namespace recipe.ViewModels
                             case "editRecipe":
                                 SelectedViewModel = new EditRecipeViewModel(this);
                                 SelectedSideViewModel = null;
+                                break;
+                            case "newRecipe":
+                                SelectedSideViewModel = null;
+                                SelectedViewModel = new NewRecipeViewModel(this);
+                                break;
+                            case "newEditRecipe":
+                                var vm2 = (RecipesViewModel)ViewModels.Find(x => x.GetType() == typeof(RecipesViewModel));
+                                var recipe = vm2.SelectedRecipe;
+                                SelectedViewModel = null;
+                                SelectedViewModel = new NewRecipeViewModel(this,recipe.Name,recipe.Description,recipe.Fat,recipe.Proteins,recipe.Carbohydrates,recipe.Mealid,recipe.Kitchenid,recipe.Categoryid,recipe.Id);
                                 break;
                         }
 

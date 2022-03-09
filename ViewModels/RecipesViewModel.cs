@@ -43,6 +43,20 @@ namespace recipe.ViewModels
 
 
         #region commands
+        private LambdaCommand newEditRecipeCommand;
+        public LambdaCommand NewEditRecipeCommand
+        {
+            get
+            {
+                return newEditRecipeCommand ??
+                    (newEditRecipeCommand = new LambdaCommand(obj =>
+                    {
+                        parent.ChangeViewModel.Execute("newEditRecipe");
+                    },
+                    (obj) => SelectedRecipe != null));
+            }
+        }
+
         private LambdaCommand delRecipeCommand;
         public LambdaCommand DelRecipeCommand
         {
@@ -85,31 +99,20 @@ namespace recipe.ViewModels
             }
         }
 
-        //private LambdaCommand newProductCommand;
-        //public LambdaCommand NewProductCommand
-        //{
-        //    get
-        //    {
-        //        return newProductCommand ??
-        //            (newProductCommand = new LambdaCommand(obj =>
-        //            {
-        //                EditProductDialogViewModel vm = new EditProductDialogViewModel("тест", "", ""/*SelectedProduct.Photo*/);
-        //                DialogResult result = DialogService.OpenDialog(vm, obj as Window);
-        //                if (result == DialogResult.Yes)
-        //                {
-        //                    var name = vm.Name;
-        //                    var desc = vm.Description;
-        //                    Product product = new Product();
-        //                    product.Name = name;
-        //                    product.Description = desc;
-        //                    db.Products.Add(product);
-        //                    db.SaveChanges();
-        //                    Products.Add(product);
-        //                }
+        private LambdaCommand newRecipeCommand;
+        public LambdaCommand NewRecipeCommand
+        {
+            get
+            {
+                return newRecipeCommand ??
+                    (newRecipeCommand = new LambdaCommand(obj =>
+                    {
 
-        //            }));
-        //    }
-        //}
+                        parent.ChangeViewModel.Execute("newRecipe");
+
+                    }));
+            }
+        }
         #endregion
     }
 }

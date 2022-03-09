@@ -70,6 +70,9 @@
             <DataTemplate DataType="{x:Type viewmodels:EditRecipeViewModel}">
                 <views:RecipeViewEdit/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:NewRecipeViewModel}">
+                <views:NewRecipeView/>
+            </DataTemplate>
 
             <DataTemplate DataType="{x:Type dialogYesNo:DialogYesNoViewModel}">
                 <dialogYesNo:DialogYesNoView></dialogYesNo:DialogYesNoView>

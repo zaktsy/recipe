@@ -87,13 +87,13 @@ namespace recipe.ViewModels
             }
         }
 
-        private LambdaCommand editRecipeCommand;
+        private LambdaCommand editRecipeStepCommand;
         public LambdaCommand EditRecipeCommand
         {
             get
             {
-                return editRecipeCommand ??
-                    (editRecipeCommand = new LambdaCommand(obj =>
+                return editRecipeStepCommand ??
+                    (editRecipeStepCommand = new LambdaCommand(obj =>
                     {
                         RecipeStepEditDialogViewModel vm = new RecipeStepEditDialogViewModel("test", SelectedStep.Stepnumber.ToString(), SelectedStep.Description, RecipesSteps.Count);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
@@ -135,13 +135,13 @@ namespace recipe.ViewModels
             }
         }
 
-        private LambdaCommand newRecipeCommand;
+        private LambdaCommand newRecipeStepCommand;
         public LambdaCommand NewRecipeCommand
         {
             get
             {
-                return newRecipeCommand ??
-                    (newRecipeCommand = new LambdaCommand(obj =>
+                return newRecipeStepCommand ??
+                    (newRecipeStepCommand = new LambdaCommand(obj =>
                     {
                         RecipeStepNewDialogViewModel vm = new RecipeStepNewDialogViewModel("test", RecipesSteps.Count);
                         DialogResult result = DialogService.OpenDialog(vm, obj as Window);
@@ -156,6 +156,39 @@ namespace recipe.ViewModels
                             RecipesSteps.Add(rs);
                         }
                     }));
+            }
+        }
+
+        private LambdaCommand delRecipeStepCommand;
+        public LambdaCommand DelRecipeCommand
+        {
+            get
+            {
+                return delRecipeStepCommand ??
+                    (delRecipeStepCommand = new LambdaCommand(obj =>
+                    {
+                        DialogViewModelBase vm = new DialogYesNoViewModel("Удалить шаг рецепта?");
+                        DialogResult result = DialogService.OpenDialog(vm, obj as Window);
+                        if (result == DialogResult.Yes)
+                        {
+                            foreach(var step in RecipesSteps)
+                            {
+                                db.RecipeSteps.Remove(step);
+                            }
+                            db.SaveChanges();
+                            int startid = SelectedStep.Stepnumber;
+                            for(int i = startid; i < RecipesSteps.Count; i++)
+                            {
+                                RecipesSteps[i].Stepnumber--;
+                            }
+                            RecipesSteps.Remove(SelectedStep);
+                            SelectedStep = null;
+                            db.RecipeSteps.AddRange(RecipesSteps);
+                            db.SaveChanges();
+                            RecipesSteps = new ObservableCollection<RecipeStep>((from steps in db.RecipeSteps where steps.Recipeid == CurrentRecipe.Id select steps));
+                        }
+                    },
+                    (obj) => SelectedStep != null));
             }
         }
 
