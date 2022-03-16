@@ -154,7 +154,8 @@ namespace recipe.ViewModels
                                     var cvm = (CategoriesViewModel)vm;
                                     SelectedViewModel = vm;
                                     SelectedSideViewModel = svm;
-                                    cvm.Categories = new ObservableCollection<Category>(db.Categories.ToList());
+                                    if (IsRecipesInfoChanched) { cvm.Categories = new ObservableCollection<Category>(db.Categories.ToList()); }
+                                    
                                 }
                                 break;
 
@@ -168,7 +169,7 @@ namespace recipe.ViewModels
                                 else
                                 {
                                     var mvm = (MealViewModel)vm;
-                                    mvm.Meals = new ObservableCollection<Meal>(db.Meals.ToList());
+                                    if (IsRecipesInfoChanched) { mvm.Meals = new ObservableCollection<Meal>(db.Meals.ToList()); }
                                     SelectedViewModel = vm;
                                 }
                                 
@@ -184,7 +185,10 @@ namespace recipe.ViewModels
                                 else
                                 {
                                     var kvm = (KitchensViewModel)vm;
-                                    kvm.Kitchens = new ObservableCollection<Kitchen>(db.Kitchens.ToList());
+                                    if (IsRecipesInfoChanched)
+                                    {
+                                        kvm.Kitchens = new ObservableCollection<Kitchen>(db.Kitchens.ToList());
+                                    }
                                     SelectedViewModel = vm;
                                 }
                                 break;
@@ -199,7 +203,10 @@ namespace recipe.ViewModels
                                 else
                                 {
                                     var pvm = (PeculiaritiesViewModel)vm;
-                                    pvm.Peculiarities = new ObservableCollection<Peculiarity>(db.Peculiarities.ToList());
+                                    if (IsRecipesInfoChanched)
+                                    {
+                                        pvm.Peculiarities = new ObservableCollection<Peculiarity>(db.Peculiarities.ToList());
+                                    }
                                     SelectedViewModel = vm;
                                 }
                                 break;
@@ -214,7 +221,10 @@ namespace recipe.ViewModels
                                 else
                                 {
                                     var mvm = (MeasuresViewModel)vm;
-                                    mvm.Measures = new ObservableCollection<Measure>(db.Measures.ToList());
+                                    if (IsRecipesInfoChanched)
+                                    {
+                                        mvm.Measures = new ObservableCollection<Measure>(db.Measures.ToList());
+                                    }
                                     SelectedViewModel = vm;
                                 }
                                 break;

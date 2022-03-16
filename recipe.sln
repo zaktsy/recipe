@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recipe", "recipe.csproj", "{1FFC85EC-500A-409F-8A76-00B87C80973A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe", "recipe.csproj", "{1FFC85EC-500A-409F-8A76-00B87C80973A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recipe_client.Android", "..\recipe_client\recipe_client.Android\recipe_client.Android.csproj", "{72314E98-D3BC-41AB-AD1A-360F23C3E243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recipe_client", "..\recipe_client\recipe_client\recipe_client.csproj", "{9B6EE5BC-ADD9-409D-9A29-A36C12BFEBA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,16 @@ Global
 		{1FFC85EC-500A-409F-8A76-00B87C80973A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFC85EC-500A-409F-8A76-00B87C80973A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FFC85EC-500A-409F-8A76-00B87C80973A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72314E98-D3BC-41AB-AD1A-360F23C3E243}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9B6EE5BC-ADD9-409D-9A29-A36C12BFEBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6EE5BC-ADD9-409D-9A29-A36C12BFEBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6EE5BC-ADD9-409D-9A29-A36C12BFEBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6EE5BC-ADD9-409D-9A29-A36C12BFEBA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
